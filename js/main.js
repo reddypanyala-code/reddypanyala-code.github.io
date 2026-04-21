@@ -1,5 +1,6 @@
 const menuToggle = document.getElementById("menuToggle");
 const siteNav = document.getElementById("siteNav");
+const backToTopLinks = document.querySelectorAll('a[href="#top"]');
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
@@ -11,6 +12,18 @@ if (menuToggle && siteNav) {
     link.addEventListener("click", () => {
       siteNav.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+if (backToTopLinks.length > 0) {
+  backToTopLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (history.replaceState) {
+        history.replaceState(null, "", `${location.pathname}${location.search}`);
+      }
     });
   });
 }
@@ -87,6 +100,9 @@ if (heroPortrait && portraitStage) {
 
     heroPortrait.style.setProperty("--portrait-w", `${rect.width}px`);
     heroPortrait.style.setProperty("--portrait-h", `${rect.height}px`);
+    heroPortrait.style.setProperty("--helmet-w", `${rect.width * 0.68}px`);
+    heroPortrait.style.setProperty("--helmet-x", `${rect.width * 0.16}px`);
+    heroPortrait.style.setProperty("--helmet-y", `${rect.height * 0.18}px`);
     heroPortrait.style.setProperty("--reveal-size", `${revealSize}px`);
     heroPortrait.style.setProperty("--reveal-left", `${revealLeft}px`);
     heroPortrait.style.setProperty("--reveal-top", `${revealTop}px`);

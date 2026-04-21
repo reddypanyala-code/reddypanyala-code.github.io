@@ -269,6 +269,9 @@ li {
   --drift-x: 0px;
   --drift-y: 0px;
   --ring-size: 210px;
+  --helmet-w: 300px;
+  --helmet-x: 70px;
+  --helmet-y: 90px;
   margin: 0;
   padding: 1.05rem;
   border-radius: 24px;
@@ -315,11 +318,11 @@ li {
   transition: opacity 0.2s ease, transform 0.22s ease;
   z-index: 2;
   pointer-events: none;
-  background-image: url("../images/ironman-hover.jpg");
-  background-size: var(--portrait-w) var(--portrait-h);
+  background-image: url("../images/ironman-mask-overlay.png");
+  background-size: calc(var(--helmet-w) * 1.02) auto;
   background-position:
-    calc(var(--trail-left) * -1)
-    calc(var(--trail-top) * -1);
+    calc(var(--helmet-x) - var(--trail-left))
+    calc(var(--helmet-y) - var(--trail-top));
   background-repeat: no-repeat;
   filter: blur(2px) saturate(1.24);
   mix-blend-mode: screen;
@@ -352,11 +355,12 @@ li {
     0 0 30px rgba(85, 210, 255, 0.22);
   background-image:
     radial-gradient(circle at 65% 15%, rgba(255, 255, 255, 0.27), rgba(255, 255, 255, 0) 45%),
-    url("../images/ironman-hover.jpg");
-  background-size: var(--portrait-w) var(--portrait-h);
+    url("../images/ironman-mask-overlay.png");
+  background-size: auto, var(--helmet-w) auto;
   background-position:
-    calc(var(--reveal-left) * -1)
-    calc(var(--reveal-top) * -1);
+    0 0,
+    calc(var(--helmet-x) - var(--reveal-left))
+    calc(var(--helmet-y) - var(--reveal-top));
   background-repeat: no-repeat;
   filter: saturate(1.08) contrast(1.07);
   pointer-events: none;
@@ -411,11 +415,10 @@ li {
   z-index: 2;
   pointer-events: none;
   transition: opacity 0.25s ease;
-  background:
-    radial-gradient(circle at 50% 85%, rgba(112, 232, 255, 0.3), rgba(112, 232, 255, 0) 35%),
-    url("../images/ironman-hover.jpg");
-  background-size: cover;
-  background-position: center;
+  background-image: url("../images/ironman-mask-overlay.png");
+  background-size: var(--helmet-w) auto;
+  background-position: var(--helmet-x) var(--helmet-y);
+  background-repeat: no-repeat;
 }
 
 @keyframes blob-morph {
