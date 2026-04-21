@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-labelledby="title desc">
+  <title id="title">River Food Pantry Warehouse Flow Diagram</title>
+  <desc id="desc">Simplified process flow from intake to distribution with intervention points.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffdf8" />
+      <stop offset="100%" stop-color="#f4efe4" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#2f4661" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1100" height="420" fill="url(#bg)" />
+
+  <text x="550" y="40" text-anchor="middle" font-size="24" font-family="Sora, Arial, sans-serif" fill="#1f324d">
+    Warehouse Flow: Current State to Improved Routing
+  </text>
+
+  <g font-family="Manrope, Arial, sans-serif" font-size="15" fill="#1f324d" stroke="#cfd7e2">
+    <rect x="60" y="150" width="170" height="82" rx="14" fill="#ffffff" />
+    <text x="145" y="183" text-anchor="middle">Receiving</text>
+    <text x="145" y="204" text-anchor="middle">and Intake</text>
+
+    <rect x="290" y="150" width="170" height="82" rx="14" fill="#ffffff" />
+    <text x="375" y="183" text-anchor="middle">Sorting</text>
+    <text x="375" y="204" text-anchor="middle">and Classification</text>
+
+    <rect x="520" y="150" width="170" height="82" rx="14" fill="#ffffff" />
+    <text x="605" y="183" text-anchor="middle">Storage</text>
+    <text x="605" y="204" text-anchor="middle">and Staging</text>
+
+    <rect x="750" y="150" width="170" height="82" rx="14" fill="#ffffff" />
+    <text x="835" y="183" text-anchor="middle">Order Pick</text>
+    <text x="835" y="204" text-anchor="middle">and Packing</text>
+
+    <rect x="960" y="150" width="120" height="82" rx="14" fill="#ffffff" />
+    <text x="1020" y="183" text-anchor="middle">Distribution</text>
+    <text x="1020" y="204" text-anchor="middle">Output</text>
+  </g>
+
+  <g stroke="#2f4661" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <line x1="230" y1="191" x2="282" y2="191" />
+    <line x1="460" y1="191" x2="512" y2="191" />
+    <line x1="690" y1="191" x2="742" y2="191" />
+    <line x1="920" y1="191" x2="952" y2="191" />
+  </g>
+
+  <g>
+    <rect x="285" y="285" width="245" height="84" rx="12" fill="#ffe8cc" stroke="#f2b705" />
+    <text x="407" y="316" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="15" fill="#7a4f00">
+      Intervention A: Route standardization
+    </text>
+    <text x="407" y="339" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="14" fill="#7a4f00">
+      reduces unnecessary cross-traffic.
+    </text>
+
+    <rect x="570" y="285" width="255" height="84" rx="12" fill="#ffe2e4" stroke="#b3191f" />
+    <text x="698" y="316" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="15" fill="#7c1015">
+      Intervention B: Staging zone realignment
+    </text>
+    <text x="698" y="339" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="14" fill="#7c1015">
+      improves space utilization and flow.
+    </text>
+  </g>
+
+  <g stroke="#6a778a" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M 407 285 C 407 248, 375 248, 375 232" />
+    <path d="M 698 285 C 698 248, 605 248, 605 232" />
+  </g>
+</svg>
