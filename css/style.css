@@ -271,6 +271,7 @@ li {
   margin-inline: auto;
   border-radius: 20px;
   overflow: hidden;
+  background: transparent;
 }
 
 .layer-back {
@@ -278,10 +279,11 @@ li {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 10%;
+  object-fit: contain;
+  object-position: 45% 18%;
   z-index: 1;
   display: block;
+  background: transparent;
 }
 
 .portrait-front-wrap {
@@ -307,7 +309,7 @@ li {
   border-radius: 50%;
   background: black;
   mix-blend-mode: destination-out;
-  filter: url(#liquid-filter) blur(3px);
+  filter: url(#liquid-filter) blur(2px);
   z-index: 2;
   pointer-events: none;
   width: 0;

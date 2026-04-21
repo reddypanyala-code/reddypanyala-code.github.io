@@ -85,7 +85,7 @@ reveals.forEach((item) => revealObserver.observe(item));
   let targetRadius = 0;
   let isHovering = false;
 
-  const MAX_RADIUS = 160;
+  const MAX_RADIUS = 90;
   const LERP_POS = 0.1;
   const LERP_IN = 0.1;
   const LERP_OUT = 0.06;
