@@ -75,10 +75,18 @@
 
           <figure class="hero-portrait" id="heroPortrait" aria-label="Portrait with interactive Iron Mode overlay">
             <div class="portrait-stage" id="portraitStage">
-              <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+              <img
+                class="layer-back"
+                src="images/ironman-helmet.png"
+                alt=""
+                aria-hidden="true"
+              />
+
+              <svg class="front-mask-svg" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                 <defs>
                   <filter id="liquid-filter" x="-50%" y="-50%" width="200%" height="200%">
                     <feTurbulence
+                      id="liquid-noise"
                       type="turbulence"
                       baseFrequency="0.018 0.022"
                       numOctaves="3"
@@ -93,26 +101,24 @@
                       yChannelSelector="G"
                     />
                   </filter>
+
+                  <mask id="portrait-cutout-mask" maskUnits="userSpaceOnUse">
+                    <rect x="0" y="0" width="400" height="500" fill="white" />
+                    <circle id="maskBlobCircle" cx="200" cy="250" r="0" fill="black" filter="url(#liquid-filter)" />
+                  </mask>
                 </defs>
-              </svg>
 
-              <img
-                class="layer-back"
-                src="images/ironman-helmet.png"
-                alt=""
-                aria-hidden="true"
-                style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:45% 18%; z-index:1; display:block; background:transparent;"
-              />
-
-              <div class="portrait-front-wrap">
-                <img
-                  class="layer-front"
-                  src="images/portrait.jpg"
-                  alt="Portrait of Vishwak Parth Reddy Panyala"
-                  loading="eager"
+                <image
+                  class="layer-front-svg"
+                  href="images/portrait.jpg"
+                  x="0"
+                  y="0"
+                  width="400"
+                  height="500"
+                  preserveAspectRatio="xMidYMin slice"
+                  mask="url(#portrait-cutout-mask)"
                 />
-                <div class="eraser-blob" id="eraserBlob"></div>
-              </div>
+              </svg>
             </div>
           </figure>
         </div>

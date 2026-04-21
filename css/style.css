@@ -266,8 +266,9 @@ li {
 
 .portrait-stage {
   position: relative;
-  width: 400px;
-  height: 500px;
+  width: min(400px, 100%);
+  aspect-ratio: 4 / 5;
+  height: auto;
   margin-inline: auto;
   border-radius: 20px;
   overflow: hidden;
@@ -286,38 +287,18 @@ li {
   background: transparent;
 }
 
-.portrait-front-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  isolation: isolate;
-}
-
-.layer-front {
+.front-mask-svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  z-index: 1;
+  z-index: 2;
   display: block;
+  pointer-events: none;
 }
 
-.eraser-blob {
-  position: absolute;
-  border-radius: 50%;
-  background: black;
-  mix-blend-mode: destination-out;
-  filter: url(#liquid-filter) blur(2px);
-  z-index: 2;
-  pointer-events: none;
-  width: 0;
-  height: 0;
-  left: 0;
-  top: 0;
-  transform: translate(-50%, -50%);
-  will-change: left, top, width, height;
+.layer-front-svg {
+  display: block;
 }
 
 .split-card,
@@ -539,10 +520,6 @@ li {
 
   .portrait-stage {
     cursor: default;
-  }
-
-  .eraser-blob {
-    display: none;
   }
 }
 

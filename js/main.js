@@ -72,11 +72,14 @@ reveals.forEach((item) => revealObserver.observe(item));
 
 (function () {
   const stage = document.getElementById("portraitStage");
-  const blob = document.getElementById("eraserBlob");
-  if (!stage || !blob) {
+  const maskBlobCircle = document.getElementById("maskBlobCircle");
+  const liquidNoise = document.getElementById("liquid-noise");
+  if (!stage || !maskBlobCircle) {
     return;
   }
 
+  const VIEW_W = 400;
+  const VIEW_H = 500;
   let mouseX = 0;
   let mouseY = 0;
   let curX = 0;
@@ -94,12 +97,16 @@ reveals.forEach((item) => revealObserver.observe(item));
     return a + (b - a) * t;
   }
 
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
   stage.addEventListener("mouseenter", function (e) {
     isHovering = true;
     targetRadius = MAX_RADIUS;
     const r = stage.getBoundingClientRect();
-    curX = mouseX = e.clientX - r.left;
-    curY = mouseY = e.clientY - r.top;
+    curX = mouseX = clamp(e.clientX - r.left, 0, r.width);
+    curY = mouseY = clamp(e.clientY - r.top, 0, r.height);
   });
 
   stage.addEventListener("mouseleave", function () {
@@ -109,8 +116,8 @@ reveals.forEach((item) => revealObserver.observe(item));
 
   stage.addEventListener("mousemove", function (e) {
     const r = stage.getBoundingClientRect();
-    mouseX = e.clientX - r.left;
-    mouseY = e.clientY - r.top;
+    mouseX = clamp(e.clientX - r.left, 0, r.width);
+    mouseY = clamp(e.clientY - r.top, 0, r.height);
   });
 
   function tick() {
@@ -118,11 +125,21 @@ reveals.forEach((item) => revealObserver.observe(item));
     curY = lerp(curY, mouseY, LERP_POS);
     radius = lerp(radius, targetRadius, isHovering ? LERP_IN : LERP_OUT);
 
-    const size = radius * 2;
-    blob.style.left = `${curX}px`;
-    blob.style.top = `${curY}px`;
-    blob.style.width = `${size}px`;
-    blob.style.height = `${size}px`;
+    const rect = stage.getBoundingClientRect();
+    const scaleX = VIEW_W / Math.max(rect.width, 1);
+    const scaleY = VIEW_H / Math.max(rect.height, 1);
+    const viewRadius = radius * (scaleX + scaleY) * 0.5;
+
+    maskBlobCircle.setAttribute("cx", (curX * scaleX).toFixed(2));
+    maskBlobCircle.setAttribute("cy", (curY * scaleY).toFixed(2));
+    maskBlobCircle.setAttribute("r", viewRadius.toFixed(2));
+
+    if (liquidNoise) {
+      const t = performance.now();
+      const fx = 0.018 + Math.sin(t / 1450) * 0.0018;
+      const fy = 0.022 + Math.cos(t / 1200) * 0.0018;
+      liquidNoise.setAttribute("baseFrequency", `${fx.toFixed(4)} ${fy.toFixed(4)}`);
+    }
 
     requestAnimationFrame(tick);
   }
