@@ -70,158 +70,62 @@ const revealObserver = new IntersectionObserver(
 
 reveals.forEach((item) => revealObserver.observe(item));
 
-const heroPortrait = document.getElementById("heroPortrait");
-const portraitStage = document.getElementById("portraitStage");
-const eraserBlob = document.getElementById("eraserBlob");
-const hoverRing = document.getElementById("hoverRing");
-const frontWrap = portraitStage?.querySelector(".portrait-front-wrap");
-const liquidTurbulence = portraitStage?.querySelector("#liquidTurbulence");
-const liquidDisplacement = portraitStage?.querySelector("#liquidDisplacement");
+(function () {
+  const stage = document.getElementById("portraitStage");
+  const blob = document.getElementById("eraserBlob");
+  if (!stage || !blob) {
+    return;
+  }
 
-if (heroPortrait && portraitStage && eraserBlob && hoverRing && frontWrap) {
-  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-  const lerp = (a, b, t) => a + (b - a) * t;
-
-  let rect = portraitStage.getBoundingClientRect();
-  let mouseX = rect.width / 2;
-  let mouseY = rect.height / 2;
-  let curX = mouseX;
-  let curY = mouseY;
+  let mouseX = 0;
+  let mouseY = 0;
+  let curX = 0;
+  let curY = 0;
   let radius = 0;
   let targetRadius = 0;
   let isHovering = false;
-  let rafId = null;
 
-  const LERP_SPEED = 0.1;
-  const EXPAND_SPEED = 0.12;
-  const SHRINK_SPEED = 0.08;
+  const MAX_RADIUS = 160;
+  const LERP_POS = 0.1;
+  const LERP_IN = 0.1;
+  const LERP_OUT = 0.06;
 
-  const maxRadiusForRect = () => clamp(Math.min(rect.width, rect.height) * 0.34, 115, 185);
-
-  const setParallaxShift = () => {
-    const nx = (curX / rect.width - 0.5) * 2;
-    const ny = (curY / rect.height - 0.5) * 2;
-    heroPortrait.style.setProperty("--back-shift-x", `${(nx * 9).toFixed(2)}px`);
-    heroPortrait.style.setProperty("--back-shift-y", `${(ny * 7).toFixed(2)}px`);
-  };
-
-  const setBlobVisuals = () => {
-    const diameter = radius * 2;
-    if (diameter <= 0.5) {
-      eraserBlob.style.width = "0px";
-      eraserBlob.style.height = "0px";
-      hoverRing.style.width = "0px";
-      hoverRing.style.height = "0px";
-      return;
-    }
-
-    const wobble = 1 + Math.sin(performance.now() / 170) * 0.028;
-    eraserBlob.style.left = `${curX}px`;
-    eraserBlob.style.top = `${curY}px`;
-    eraserBlob.style.width = `${diameter}px`;
-    eraserBlob.style.height = `${diameter}px`;
-    eraserBlob.style.transform = `translate(-50%, -50%) scale(${wobble.toFixed(3)})`;
-
-    hoverRing.style.left = `${curX}px`;
-    hoverRing.style.top = `${curY}px`;
-    hoverRing.style.width = `${diameter * 1.04}px`;
-    hoverRing.style.height = `${diameter * 1.04}px`;
-  };
-
-  const setLiquidFilterState = (t) => {
-    if (!liquidTurbulence || !liquidDisplacement) {
-      return;
-    }
-    const fx = 0.017 + Math.sin(t / 920) * 0.005;
-    const fy = 0.024 + Math.cos(t / 760) * 0.006;
-    liquidTurbulence.setAttribute("baseFrequency", `${fx.toFixed(4)} ${fy.toFixed(4)}`);
-
-    const maxRadius = maxRadiusForRect();
-    const displacementScale = 20 + (radius / maxRadius) * 28 + Math.sin(t / 160) * 3.4;
-    liquidDisplacement.setAttribute("scale", displacementScale.toFixed(2));
-  };
-
-  const animate = (t) => {
-    curX = lerp(curX, mouseX, LERP_SPEED);
-    curY = lerp(curY, mouseY, LERP_SPEED);
-
-    const speed = isHovering ? EXPAND_SPEED : SHRINK_SPEED;
-    radius = lerp(radius, targetRadius, speed);
-
-    if (Math.abs(radius - targetRadius) < 0.2) {
-      radius = targetRadius;
-    }
-
-    setParallaxShift();
-    setBlobVisuals();
-    setLiquidFilterState(t);
-
-    const cursorDelta = Math.abs(mouseX - curX) + Math.abs(mouseY - curY);
-    if (isHovering || radius > 0.6 || cursorDelta > 0.15) {
-      rafId = requestAnimationFrame(animate);
-    } else {
-      rafId = null;
-    }
-  };
-
-  const startLoop = () => {
-    if (!rafId) {
-      rafId = requestAnimationFrame(animate);
-    }
-  };
-
-  const updateMouse = (clientX, clientY) => {
-    rect = portraitStage.getBoundingClientRect();
-    mouseX = clamp(clientX - rect.left, 0, rect.width);
-    mouseY = clamp(clientY - rect.top, 0, rect.height);
-    startLoop();
-  };
-
-  portraitStage.addEventListener("pointerenter", (event) => {
-    if (window.matchMedia("(hover: none)").matches) {
-      return;
-    }
-    isHovering = true;
-    heroPortrait.classList.add("is-hovering");
-    targetRadius = maxRadiusForRect();
-    updateMouse(event.clientX, event.clientY);
-  });
-
-  portraitStage.addEventListener("pointermove", (event) => {
-    if (window.matchMedia("(hover: none)").matches) {
-      return;
-    }
-    updateMouse(event.clientX, event.clientY);
-  });
-
-  portraitStage.addEventListener("pointerleave", () => {
-    if (window.matchMedia("(hover: none)").matches) {
-      return;
-    }
-    isHovering = false;
-    targetRadius = 0;
-    heroPortrait.classList.remove("is-hovering");
-    startLoop();
-  });
-
-  if (window.matchMedia("(hover: none)").matches) {
-    portraitStage.addEventListener("click", () => {
-      heroPortrait.classList.toggle("iron-active");
-    });
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
   }
 
-  window.addEventListener("resize", () => {
-    rect = portraitStage.getBoundingClientRect();
-    mouseX = clamp(mouseX, 0, rect.width);
-    mouseY = clamp(mouseY, 0, rect.height);
-    curX = clamp(curX, 0, rect.width);
-    curY = clamp(curY, 0, rect.height);
-    targetRadius = isHovering ? maxRadiusForRect() : 0;
-    setParallaxShift();
-    setBlobVisuals();
-    startLoop();
+  stage.addEventListener("mouseenter", function (e) {
+    isHovering = true;
+    targetRadius = MAX_RADIUS;
+    const r = stage.getBoundingClientRect();
+    curX = mouseX = e.clientX - r.left;
+    curY = mouseY = e.clientY - r.top;
   });
 
-  setParallaxShift();
-  setBlobVisuals();
-}
+  stage.addEventListener("mouseleave", function () {
+    isHovering = false;
+    targetRadius = 0;
+  });
+
+  stage.addEventListener("mousemove", function (e) {
+    const r = stage.getBoundingClientRect();
+    mouseX = e.clientX - r.left;
+    mouseY = e.clientY - r.top;
+  });
+
+  function tick() {
+    curX = lerp(curX, mouseX, LERP_POS);
+    curY = lerp(curY, mouseY, LERP_POS);
+    radius = lerp(radius, targetRadius, isHovering ? LERP_IN : LERP_OUT);
+
+    const size = radius * 2;
+    blob.style.left = `${curX}px`;
+    blob.style.top = `${curY}px`;
+    blob.style.width = `${size}px`;
+    blob.style.height = `${size}px`;
+
+    requestAnimationFrame(tick);
+  }
+
+  tick();
+})();
