@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=20260421b" />
+    <link rel="stylesheet" href="css/style.css?v=20260421c" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -96,15 +96,15 @@
                     <feDisplacementMap
                       in="SourceGraphic"
                       in2="noise"
-                      scale="22"
+                      scale="16"
                       xChannelSelector="R"
                       yChannelSelector="G"
                     />
                   </filter>
 
-                  <mask id="portrait-cutout-mask" maskUnits="userSpaceOnUse">
+                  <mask id="portrait-cutout-mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
                     <rect x="0" y="0" width="400" height="500" fill="white" />
-                    <circle id="maskBlobCircle" cx="200" cy="250" r="0" fill="black" filter="url(#liquid-filter)" />
+                    <circle id="maskBlobCircle" cx="200" cy="250" r="0" fill="#000000" filter="url(#liquid-filter)" />
                   </mask>
                 </defs>
 
@@ -344,6 +344,6 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20260421b"></script>
+    <script src="js/main.js?v=20260421c"></script>
   </body>
 </html>
