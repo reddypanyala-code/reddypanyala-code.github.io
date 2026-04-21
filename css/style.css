@@ -253,6 +253,22 @@ li {
 }
 
 .hero-portrait {
+  --reveal-left: 0px;
+  --reveal-top: 0px;
+  --reveal-size: 230px;
+  --trail-left: 0px;
+  --trail-top: 0px;
+  --trail-size: 250px;
+  --portrait-w: 520px;
+  --portrait-h: 520px;
+  --cursor-x: 50%;
+  --cursor-y: 50%;
+  --parallax-x: 0;
+  --parallax-y: 0;
+  --blob-rot: 0deg;
+  --drift-x: 0px;
+  --drift-y: 0px;
+  --ring-size: 210px;
   margin: 0;
   padding: 1.05rem;
   border-radius: 24px;
@@ -264,102 +280,163 @@ li {
   cursor: pointer;
 }
 
+.portrait-stage {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
 .hero-portrait img {
   border-radius: 18px;
+  width: 100%;
+  height: auto;
 }
 
 .portrait-base {
   position: relative;
   z-index: 1;
+  display: block;
+  transition: transform 0.18s ease-out;
+  transform: scale(1.01) translate(
+    calc(var(--parallax-x) * -8px),
+    calc(var(--parallax-y) * -8px)
+  );
 }
 
-.iron-mode {
+.iron-cursor-trail {
   position: absolute;
-  inset: 1.05rem;
-  border-radius: 18px;
+  left: var(--trail-left);
+  top: var(--trail-top);
+  width: var(--trail-size);
+  height: var(--trail-size);
+  border-radius: 62% 38% 54% 46% / 44% 63% 37% 56%;
   opacity: 0;
-  transition: opacity 0.42s ease;
+  transform: translate(var(--drift-x), var(--drift-y)) scale(0.72) rotate(calc(var(--blob-rot) * -0.35));
+  transition: opacity 0.2s ease, transform 0.22s ease;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("../images/ironman-hover.jpg");
+  background-size: var(--portrait-w) var(--portrait-h);
+  background-position:
+    calc(var(--trail-left) * -1)
+    calc(var(--trail-top) * -1);
+  background-repeat: no-repeat;
+  filter: blur(2px) saturate(1.24);
+  mix-blend-mode: screen;
+}
+
+.hero-portrait.is-hovering .iron-cursor-trail,
+.hero-portrait.iron-active .iron-cursor-trail {
+  opacity: 0.38;
+  transform: translate(var(--drift-x), var(--drift-y)) scale(1) rotate(calc(var(--blob-rot) * -0.35));
+}
+
+.iron-cursor-reveal {
+  position: absolute;
+  left: var(--reveal-left);
+  top: var(--reveal-top);
+  width: var(--reveal-size);
+  height: var(--reveal-size);
+  border-radius: 50% 42% 55% 45% / 47% 58% 42% 53%;
+  opacity: 0;
+  transform: translate(var(--drift-x), var(--drift-y)) scale(0.78) rotate(var(--blob-rot));
+  transition:
+    opacity 0.18s ease,
+    transform 0.2s cubic-bezier(0.2, 0.9, 0.25, 1.1),
+    border-radius 0.22s ease;
   overflow: hidden;
   z-index: 2;
+  border: 1px solid rgba(177, 211, 247, 0.58);
+  box-shadow:
+    0 14px 30px rgba(7, 16, 34, 0.28),
+    0 0 30px rgba(85, 210, 255, 0.22);
+  background-image:
+    radial-gradient(circle at 65% 15%, rgba(255, 255, 255, 0.27), rgba(255, 255, 255, 0) 45%),
+    url("../images/ironman-hover.jpg");
+  background-size: var(--portrait-w) var(--portrait-h);
+  background-position:
+    calc(var(--reveal-left) * -1)
+    calc(var(--reveal-top) * -1);
+  background-repeat: no-repeat;
+  filter: saturate(1.08) contrast(1.07);
+  pointer-events: none;
+  animation: blob-morph 2.4s ease-in-out infinite paused;
 }
 
-.hero-portrait:hover .iron-mode,
-.hero-portrait.iron-active .iron-mode {
+.hero-portrait.is-hovering .iron-cursor-reveal,
+.hero-portrait.iron-active .iron-cursor-reveal {
   opacity: 1;
+  transform: translate(var(--drift-x), var(--drift-y)) scale(1) rotate(var(--blob-rot));
+  animation-play-state: running;
 }
 
-.portrait-tint {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: contrast(1.14) saturate(1.18) hue-rotate(-14deg) brightness(1.03);
-}
-
-.iron-mode::before {
+.iron-cursor-reveal::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 82%, rgba(88, 208, 255, 0.45), rgba(88, 208, 255, 0) 22%),
-    linear-gradient(to bottom, rgba(179, 25, 31, 0.15), rgba(31, 58, 86, 0.2));
+    linear-gradient(130deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 38%),
+    radial-gradient(circle at 45% 80%, rgba(122, 229, 255, 0.2), rgba(122, 229, 255, 0) 48%);
 }
 
-.helmet {
+.iron-cursor-ring {
   position: absolute;
-  background: linear-gradient(160deg, rgba(177, 25, 30, 0.86), rgba(116, 12, 18, 0.86));
-  border: 1.3px solid rgba(243, 189, 21, 0.88);
-  box-shadow: inset 0 0 20px rgba(255, 232, 171, 0.15);
-}
-
-.helmet-top {
-  top: 9%;
-  left: 19%;
-  width: 62%;
-  height: 22%;
-  clip-path: polygon(8% 100%, 0% 25%, 12% 0%, 88% 0%, 100% 25%, 92% 100%);
-}
-
-.helmet-left {
-  top: 17%;
-  left: 13%;
-  width: 22%;
-  height: 44%;
-  clip-path: polygon(0 25%, 65% 0, 100% 8%, 92% 100%, 15% 95%);
-}
-
-.helmet-right {
-  top: 17%;
-  right: 13%;
-  width: 22%;
-  height: 44%;
-  clip-path: polygon(35% 0, 100% 25%, 85% 95%, 8% 100%, 0 8%);
-}
-
-.helmet-jaw {
-  bottom: 23%;
-  left: 27%;
-  width: 46%;
-  height: 26%;
-  clip-path: polygon(0 15%, 14% 0, 86% 0, 100% 15%, 88% 100%, 12% 100%);
-}
-
-.arc-reactor {
-  position: absolute;
-  left: 50%;
-  bottom: 7%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  width: var(--ring-size);
+  height: var(--ring-size);
+  transform: translate(-50%, -50%) scale(0.72);
   border-radius: 50%;
+  border: 1px solid rgba(175, 221, 249, 0.64);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.26),
+    0 0 30px rgba(103, 217, 255, 0.4);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.18s ease;
+}
+
+.hero-portrait.is-hovering .iron-cursor-ring,
+.hero-portrait.iron-active .iron-cursor-ring {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.iron-static-fallback {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
   background:
-    radial-gradient(circle, rgba(238, 250, 255, 0.95) 14%, rgba(125, 225, 255, 0.8) 35%, rgba(9, 56, 74, 0) 70%);
-  box-shadow: 0 0 22px rgba(109, 215, 255, 0.75);
+    radial-gradient(circle at 50% 85%, rgba(112, 232, 255, 0.3), rgba(112, 232, 255, 0) 35%),
+    url("../images/ironman-hover.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-portrait figcaption {
   margin-top: 0.75rem;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+@keyframes blob-morph {
+  0% {
+    border-radius: 50% 42% 55% 45% / 47% 58% 42% 53%;
+  }
+  33% {
+    border-radius: 58% 42% 46% 54% / 57% 45% 55% 43%;
+  }
+  66% {
+    border-radius: 44% 56% 40% 60% / 39% 62% 38% 61%;
+  }
+  100% {
+    border-radius: 50% 42% 55% 45% / 47% 58% 42% 53%;
+  }
 }
 
 .split-card,
@@ -571,6 +648,26 @@ li {
       radial-gradient(600px 320px at 92% -3%, rgba(242, 183, 5, 0.17), transparent 60%),
       radial-gradient(450px 260px at 0% 10%, rgba(179, 25, 31, 0.13), transparent 60%),
       var(--bg);
+  }
+}
+
+@media (hover: none) {
+  .hero-portrait {
+    cursor: default;
+  }
+
+  .iron-cursor-reveal,
+  .iron-cursor-trail,
+  .iron-cursor-ring {
+    display: none;
+  }
+
+  .hero-portrait .portrait-base {
+    transform: none;
+  }
+
+  .hero-portrait.iron-active .iron-static-fallback {
+    opacity: 0.9;
   }
 }
 
