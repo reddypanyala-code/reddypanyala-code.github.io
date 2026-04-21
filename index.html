@@ -75,16 +75,44 @@
 
           <figure class="hero-portrait" id="heroPortrait" aria-label="Portrait with interactive Iron Mode overlay">
             <div class="portrait-stage" id="portraitStage">
-              <img
-                class="portrait-base"
-                src="images/profile-headshot.jpg"
-                alt="Portrait of Vishwak Parth Reddy Panyala"
-                loading="eager"
-              />
-              <div class="iron-cursor-trail" aria-hidden="true"></div>
-              <div class="iron-cursor-reveal" aria-hidden="true"></div>
-              <div class="iron-cursor-ring" aria-hidden="true"></div>
-              <div class="iron-static-fallback" aria-hidden="true"></div>
+              <div class="portrait-back-wrap">
+                <img class="layer-back" src="images/ironman-mask-overlay.png" alt="" aria-hidden="true" />
+              </div>
+
+              <div class="portrait-front-wrap">
+                <img
+                  class="layer-front"
+                  src="images/profile-headshot.jpg"
+                  alt="Portrait of Vishwak Parth Reddy Panyala"
+                  loading="eager"
+                />
+                <div class="eraser-blob" id="eraserBlob" aria-hidden="true"></div>
+              </div>
+
+              <div class="hover-ring" id="hoverRing" aria-hidden="true"></div>
+
+              <svg class="svg-filters" aria-hidden="true" focusable="false">
+                <defs>
+                  <filter id="liquid-filter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+                    <feTurbulence
+                      id="liquidTurbulence"
+                      type="turbulence"
+                      baseFrequency="0.018 0.025"
+                      numOctaves="3"
+                      seed="5"
+                      result="turbOut"
+                    />
+                    <feDisplacementMap
+                      id="liquidDisplacement"
+                      in="SourceGraphic"
+                      in2="turbOut"
+                      scale="45"
+                      xChannelSelector="R"
+                      yChannelSelector="G"
+                    />
+                  </filter>
+                </defs>
+              </svg>
             </div>
           </figure>
         </div>
