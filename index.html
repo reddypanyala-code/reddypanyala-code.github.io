@@ -79,14 +79,23 @@
             </div>
 
             <div class="hero-stage-wrap">
-              <figure class="hero-stage" id="heroStage" aria-label="Portrait of Vishwak that morphs into an Iron Man helmet on hover">
-                <img class="layer layer-helmet" src="images/ironman-bust.png" alt="" aria-hidden="true" decoding="async" />
-                <picture>
+              <figure class="hero-stage" id="heroStage" aria-label="Portrait of Vishwak Panyala — hover to reveal the Iron Man helmet">
+                <!-- Layer 1: Portrait — base, always visible -->
+                <picture class="layer-portrait">
                   <source type="image/webp" srcset="images/hero-portrait-800.webp 800w, images/hero-portrait-1280.webp 1280w" sizes="(max-width: 540px) 90vw, 540px" />
-                  <img class="layer layer-portrait" src="images/hero-portrait-1280.jpg" alt="Vishwak Parth Reddy Panyala in a varsity jacket, looking at the camera." decoding="async" fetchpriority="high" />
+                  <img src="images/hero-portrait-1280.jpg" alt="Vishwak Parth Reddy Panyala in a varsity jacket, smiling at the camera." decoding="async" fetchpriority="high" />
                 </picture>
-                <div class="reveal-glow" aria-hidden="true"></div>
-                <button class="suit-up-toggle" type="button" aria-pressed="false" aria-label="Toggle Iron Man helmet">Suit up</button>
+
+                <!-- Layer 2: Helmet overlay — positioned over the face region, hidden by default -->
+                <div class="layer-helmet-face" aria-hidden="true">
+                  <img src="images/ironman-helmet-overlay.jpg" alt="" decoding="async" />
+                </div>
+
+                <!-- Layer 3: Blue eye-glow HUD accent -->
+                <div class="layer-hud-glow" aria-hidden="true"></div>
+
+                <!-- Touch toggle -->
+                <button class="suit-up-toggle" type="button" aria-pressed="false" aria-label="Toggle Iron Man helmet overlay">Suit up</button>
               </figure>
               <div class="hero-stage-hint">
                 <span class="hint-chip">Hover to suit up</span>

@@ -1,4 +1,4 @@
-/* Hero section + helmet morph */
+/* Hero section + helmet face overlay */
 
 .hero {
   position: relative;
@@ -119,146 +119,227 @@
   .hero-metrics { grid-template-columns: 1fr; gap: var(--space-3); }
 }
 
-/* Right column: portrait + helmet stage */
+/* ─── HERO STAGE (right column) ─────────────────────────────────────────── */
+
 .hero-stage-wrap {
   position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: var(--space-4);
 }
 
+/*
+ * Alignment tuning knobs — open DevTools and tweak these on the element
+ * to re-calibrate if the helmet drifts on a different monitor or photo crop.
+ *
+ * --helmet-top:   how far down the stage the overlay div starts
+ * --helmet-left:  left edge of the overlay div
+ * --helmet-w:     width of the overlay div (covers face width in portrait)
+ * --helmet-h:     height of the overlay div (covers face height in portrait)
+ * --hud-top:      vertical position of the blue eye-glow accent row
+ */
 .hero-stage {
-  --mx: 50%;
-  --my: 50%;
-  --reveal: 0;
+  --helmet-top:  13%;
+  --helmet-left: 15%;
+  --helmet-w:    70%;
+  --helmet-h:    58%;
+  --hud-top:     36%;
+
   position: relative;
-  width: min(540px, 90vw);
+  width: min(520px, 88vw);
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background:
-    radial-gradient(60% 60% at 50% 35%, rgba(225, 36, 46, 0.16), transparent 70%),
-    var(--bg-elev);
+  background: var(--bg-elev);
   box-shadow:
-    0 40px 80px -20px rgba(0, 0, 0, 0.55),
-    0 0 0 1px var(--rule-strong) inset;
+    0 40px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
   cursor: pointer;
-  isolation: isolate;
+
+  /* 3D tilt — driven by JS pointer tracking */
+  transform: perspective(900px) rotateX(0deg) rotateY(0deg);
+  transition:
+    transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s ease;
+  will-change: transform;
 }
 
-.hero-stage::before {
-  /* faint inner highlight + chamfered look */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(120% 80% at 50% -20%, rgba(255, 255, 255, 0.06), transparent 50%),
-    radial-gradient(60% 60% at 50% 110%, rgba(225, 36, 46, 0.18), transparent 60%);
-  pointer-events: none;
-  z-index: 4;
-  border-radius: inherit;
+.hero-stage:hover {
+  box-shadow:
+    0 52px 100px -28px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(212, 162, 76, 0.18) inset;
 }
 
-.hero-stage .layer {
+/* ── Layer 1: Portrait ────────────────────────────────────────────────────
+   Full stage coverage, always visible. picture element needs display:block
+   so it participates in the absolutely-positioned flow correctly.        */
+
+.layer-portrait {
   position: absolute;
   inset: 0;
+  display: block;
+  z-index: 1;
+}
+
+.layer-portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center top;
+  display: block;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Helmet sits at the back, scaled and positioned to align with portrait head */
-.hero-stage .layer-helmet {
+/* Subtle vignette on the portrait so the helmet blends more cleanly */
+.layer-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(0, 0, 0, 0.42), transparent 70%),
+    radial-gradient(ellipse 100% 25% at 50% 0%,  rgba(0, 0, 0, 0.22), transparent 60%);
+  pointer-events: none;
   z-index: 1;
-  object-fit: contain;
-  object-position: center 12%;
-  transform: scale(1.05);
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.5))
-          drop-shadow(0 0 28px rgba(225, 36, 46, 0.25));
-  transition: transform var(--dur-slow) var(--ease-spring),
-              filter var(--dur-slow) var(--ease-out);
-  will-change: transform, filter;
 }
 
-/* Portrait sits on top, mask hides a circle around the cursor on hover */
-.hero-stage .layer-portrait {
-  z-index: 2;
-  -webkit-mask-image: radial-gradient(
-    circle at var(--mx) var(--my),
-    transparent calc(var(--reveal) * 80%),
-    rgba(0,0,0,0.05) calc(var(--reveal) * 88%),
-    black calc(var(--reveal) * 110%)
-  );
-  mask-image: radial-gradient(
-    circle at var(--mx) var(--my),
-    transparent calc(var(--reveal) * 80%),
-    rgba(0,0,0,0.05) calc(var(--reveal) * 88%),
-    black calc(var(--reveal) * 110%)
-  );
-  transition: opacity var(--dur-slow) var(--ease-out);
-  will-change: mask-image, -webkit-mask-image;
-}
+/* ── Layer 2: Helmet face overlay ─────────────────────────────────────────
+   Positioned absolutely over the face region in the portrait.
+   The Iron Man image is cropped via object-fit: cover so only the helmet
+   face area fills the div. A radial mask softens the edges so the overlay
+   blends into the portrait rather than looking pasted on.                */
 
-/* Glow pulse beneath the cursor only when revealing */
-.hero-stage .reveal-glow {
+.layer-helmet-face {
   position: absolute;
   z-index: 3;
-  width: 0; height: 0;
-  border-radius: 50%;
+  top:    var(--helmet-top);
+  left:   var(--helmet-left);
+  width:  var(--helmet-w);
+  height: var(--helmet-h);
+  overflow: hidden;
+  border-radius: 4px;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(225, 36, 46, 0.45) 0%, rgba(225, 36, 46, 0.15) 30%, transparent 70%);
-  filter: blur(8px);
-  left: var(--mx);
-  top: var(--my);
-  transform: translate(-50%, -50%);
-  opacity: calc(var(--reveal) * 0.9);
-  width: calc(var(--reveal) * 60%);
-  aspect-ratio: 1;
-  transition: opacity var(--dur-base) var(--ease-out);
-  mix-blend-mode: screen;
+  user-select: none;
+
+  /* Radial mask: fully opaque at center (the face), transparent at edges.
+     Center (50% 50%) aligns with the middle of the overlay div.
+     The ellipse stops are tuned so the golden background around the
+     helmet bleeds out before reaching the portrait's background.         */
+  -webkit-mask-image: radial-gradient(
+    ellipse 52% 50% at 50% 50%,
+    black              55%,
+    rgba(0,0,0,0.85)   68%,
+    rgba(0,0,0,0.45)   80%,
+    rgba(0,0,0,0.08)   91%,
+    transparent       100%
+  );
+  mask-image: radial-gradient(
+    ellipse 52% 50% at 50% 50%,
+    black              55%,
+    rgba(0,0,0,0.85)   68%,
+    rgba(0,0,0,0.45)   80%,
+    rgba(0,0,0,0.08)   91%,
+    transparent       100%
+  );
+
+  /* Hidden by default — helmet is not visible */
+  opacity: 0;
+  transform: scale(0.92) translateY(12px);
+  transition:
+    opacity   0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
 }
 
-/* Suited state — apply on hover or via .is-suited (touch tap) */
-.hero-stage:hover,
-.hero-stage.is-suited {
-  --reveal: 1;
+.layer-helmet-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position: center shows the helmet centered in the div.
+     Tweak the Y value (currently 40%) to shift the face up/down
+     if the eye slits don't align with the portrait eyes.             */
+  object-position: center 38%;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
-.hero-stage:hover .layer-helmet,
-.hero-stage.is-suited .layer-helmet {
-  transform: scale(1.12) rotate(-1.5deg);
-  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.6))
-          drop-shadow(0 0 36px rgba(225, 36, 46, 0.55));
+/* ── Layer 3: Blue eye-glow HUD accent ────────────────────────────────────
+   Mimics the Arc Reactor / eye-slit glow of the Iron Man helmet.
+   Positioned at eye level (--hud-top) across the face width.            */
+
+.layer-hud-glow {
+  position: absolute;
+  z-index: 4;
+  top:    var(--hud-top);
+  left:   20%;
+  width:  60%;
+  height: 8%;
+  pointer-events: none;
+
+  /* Two soft elliptical glows, one per eye */
+  background:
+    radial-gradient(ellipse 30% 100% at 32% 50%, rgba(20, 200, 255, 0.92), rgba(20, 200, 255, 0.28) 55%, transparent 100%),
+    radial-gradient(ellipse 30% 100% at 68% 50%, rgba(20, 200, 255, 0.92), rgba(20, 200, 255, 0.28) 55%, transparent 100%);
+  filter: blur(4px);
+
+  opacity: 0;
+  transform: scaleX(0.6);
+  transition:
+    opacity   0.3s ease 0.28s,
+    transform 0.3s ease 0.28s;
+  will-change: opacity, transform;
 }
 
-/* Reduced motion — cross-fade only, no liquid expand */
+/* ── Hover / suited state ─────────────────────────────────────────────────
+   CSS handles the reveal on :hover. JS handles the 3D tilt only.        */
+
+.hero-stage:hover .layer-helmet-face,
+.hero-stage.is-suited .layer-helmet-face {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.hero-stage:hover .layer-hud-glow,
+.hero-stage.is-suited .layer-hud-glow {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────  */
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-stage:hover .layer-portrait,
-  .hero-stage.is-suited .layer-portrait {
-    -webkit-mask-image: none;
-    mask-image: none;
-    opacity: 0;
+  .hero-stage {
+    transform: none !important;
+    transition: box-shadow 0.4s ease;
   }
-  .hero-stage .layer-portrait { transition: opacity 200ms linear; }
-  .hero-stage .reveal-glow { display: none; }
+  .layer-helmet-face {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+  .layer-hud-glow {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
 }
 
-/* Mobile — show a tap-to-suit-up button overlay since hover doesn't apply */
+/* ── Touch toggle button ──────────────────────────────────────────────────
+   Hidden on hover-capable devices, shown on touch-only screens.         */
+
 .suit-up-toggle {
   position: absolute;
   bottom: var(--space-4);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5;
-  background: rgba(14, 14, 16, 0.78);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--rule-gold);
+  z-index: 6;
+  background: rgba(14, 14, 16, 0.80);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 162, 76, 0.38);
   color: var(--accent-gold);
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1.1rem;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
   font-weight: 600;
@@ -267,21 +348,22 @@
   text-transform: uppercase;
   cursor: pointer;
   display: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 @media (hover: none) {
-  .suit-up-toggle { display: inline-flex; }
+  .suit-up-toggle { display: inline-flex; align-items: center; }
 }
 
 .hero-stage.is-suited .suit-up-toggle {
-  background: var(--accent-red);
+  background: rgba(181, 18, 27, 0.88);
   color: var(--ink-primary);
   border-color: var(--accent-red);
 }
 
-/* Hint chip below stage */
+/* ── Hint chip ────────────────────────────────────────────────────────────  */
+
 .hero-stage-hint {
-  margin-top: var(--space-4);
   display: flex;
   justify-content: center;
 }
@@ -290,7 +372,8 @@
   .hero-stage-hint { display: none; }
 }
 
-/* Scroll indicator */
+/* ── Scroll indicator ─────────────────────────────────────────────────────  */
+
 .scroll-indicator {
   position: absolute;
   bottom: clamp(1rem, 3vw, 2rem);
@@ -316,8 +399,8 @@
 }
 
 @keyframes drop {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
