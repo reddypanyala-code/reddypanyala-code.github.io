@@ -615,6 +615,27 @@ a.card { text-decoration: none; color: inherit; }
   .pdf-actions { justify-content: center; }
 }
 
+/* ── Inline lab chart figures ─────────────────────────────────────────── */
+.lab-figure {
+  margin: var(--space-8) 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+.lab-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lab-figure figcaption {
+  padding: var(--space-3) var(--space-5);
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
 /* ── Report preview figure (above PDF embed) ──────────────────────────── */
 .report-preview {
   margin: var(--space-6) 0 var(--space-4);
