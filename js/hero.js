@@ -1,39 +1,45 @@
-// Hero stage — 3D tilt on pointer move + touch suit-up toggle
+// Hero stage — moving band reveal + 3D tilt + touch toggle
 
 (function () {
-  const stage = document.getElementById('heroStage');
+  const stage    = document.getElementById('heroStage');
   if (!stage) return;
 
-  const toggleBtn     = stage.querySelector('.suit-up-toggle');
+  const helmFace  = stage.querySelector('.layer-helmet-face');
+  const glowEl    = stage.querySelector('.layer-hud-glow');
+  const toggleBtn = stage.querySelector('.suit-up-toggle');
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const supportsHover = window.matchMedia('(hover: hover)').matches;
 
-  // ── 3D perspective tilt ────────────────────────────────────────────────
-  // On pointer move, the whole stage card tilts in 3D toward the cursor.
-  // CSS :hover handles the helmet reveal independently.
-  if (supportsHover && !reducedMotion) {
+  if (supportsHover && !reducedMotion && helmFace && glowEl) {
     let raf = null;
 
     const onMove = (e) => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        const rect = stage.getBoundingClientRect();
-        // Normalised offset from center: -0.5 … +0.5
-        const dx = (e.clientX - rect.left)  / rect.width  - 0.5;
-        const dy = (e.clientY - rect.top)   / rect.height - 0.5;
-        // Tilt: pitch (up/down) and yaw (left/right)
-        const tiltX = -dy * 7;
-        const tiltY =  dx * 9;
+        const sr = stage.getBoundingClientRect();
+        const hr = helmFace.getBoundingClientRect();
+
+        // --my: cursor Y relative to the helmet overlay div (px).
+        // The CSS linear-gradient mask uses this to position the reveal band.
+        helmFace.style.setProperty('--my', `${e.clientY - hr.top}px`);
+
+        // --glow-y: cursor Y relative to stage top (px).
+        // The glow element translateY's to this value to track the cursor row.
+        glowEl.style.setProperty('--glow-y', `${e.clientY - sr.top}px`);
+
+        // 3D tilt toward cursor
+        const dx = (e.clientX - sr.left) / sr.width  - 0.5;
+        const dy = (e.clientY - sr.top)  / sr.height - 0.5;
         stage.style.transform =
-          `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          `perspective(900px) rotateX(${(-dy * 7).toFixed(2)}deg) rotateY(${(dx * 9).toFixed(2)}deg)`;
+
         raf = null;
       });
     };
 
-    // Fast response while moving, slow spring-back on leave
     stage.addEventListener('pointerenter', () => {
-      stage.style.transition =
-        'transform 0.12s ease, box-shadow 0.4s ease';
+      stage.style.transition = 'transform 0.12s ease, box-shadow 0.4s ease';
     });
 
     stage.addEventListener('pointermove', onMove);
@@ -42,12 +48,11 @@
       if (raf) { cancelAnimationFrame(raf); raf = null; }
       stage.style.transition =
         'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease';
-      stage.style.transform =
-        'perspective(900px) rotateX(0deg) rotateY(0deg)';
+      stage.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
     });
   }
 
-  // ── Touch suit-up toggle ───────────────────────────────────────────────
+  // Touch suit-up toggle
   if (toggleBtn) {
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();

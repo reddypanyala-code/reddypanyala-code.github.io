@@ -206,12 +206,15 @@
 }
 
 /* ── Layer 2: Helmet face overlay ─────────────────────────────────────────
-   Positioned absolutely over the face region in the portrait.
-   The Iron Man image is cropped via object-fit: cover so only the helmet
-   face area fills the div. A radial mask softens the edges so the overlay
-   blends into the portrait rather than looking pasted on.                */
+   Hidden by default. JS sets --my (px from top of this element) on every
+   pointermove so the linear-gradient mask creates a moving horizontal band
+   that reveals only the strip of the helmet nearest the cursor.          */
 
 .layer-helmet-face {
+  /* --my: set by JS as pixels from top of this div; fallback = centre */
+  --my: 50%;
+  --band: 72px;   /* half-height of the opaque core of the reveal band  */
+
   position: absolute;
   z-index: 3;
   top:    var(--helmet-top);
@@ -223,89 +226,104 @@
   pointer-events: none;
   user-select: none;
 
-  /* Radial mask: fully opaque at center (the face), transparent at edges.
-     Center (50% 50%) aligns with the middle of the overlay div.
-     The ellipse stops are tuned so the golden background around the
-     helmet bleeds out before reaching the portrait's background.         */
-  -webkit-mask-image: radial-gradient(
-    ellipse 52% 50% at 50% 50%,
-    black              55%,
-    rgba(0,0,0,0.85)   68%,
-    rgba(0,0,0,0.45)   80%,
-    rgba(0,0,0,0.08)   91%,
-    transparent       100%
+  /* Moving band mask — gradient in this element's own pixel coordinate space.
+     Soft feathered edges (2× and 1.1×) give a glow-lit feel instead of
+     a hard clip.                                                          */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent             calc(var(--my) - var(--band) * 2.2),
+    rgba(0,0,0,0.35)        calc(var(--my) - var(--band) * 1.15),
+    black                   calc(var(--my) - var(--band) * 0.28),
+    black                   calc(var(--my) + var(--band) * 0.28),
+    rgba(0,0,0,0.35)        calc(var(--my) + var(--band) * 1.15),
+    transparent             calc(var(--my) + var(--band) * 2.2)
   );
-  mask-image: radial-gradient(
-    ellipse 52% 50% at 50% 50%,
-    black              55%,
-    rgba(0,0,0,0.85)   68%,
-    rgba(0,0,0,0.45)   80%,
-    rgba(0,0,0,0.08)   91%,
-    transparent       100%
+  mask-image: linear-gradient(
+    to bottom,
+    transparent             calc(var(--my) - var(--band) * 2.2),
+    rgba(0,0,0,0.35)        calc(var(--my) - var(--band) * 1.15),
+    black                   calc(var(--my) - var(--band) * 0.28),
+    black                   calc(var(--my) + var(--band) * 0.28),
+    rgba(0,0,0,0.35)        calc(var(--my) + var(--band) * 1.15),
+    transparent             calc(var(--my) + var(--band) * 2.2)
   );
 
-  /* Hidden by default — helmet is not visible */
   opacity: 0;
-  transform: scale(0.92) translateY(12px);
-  transition:
-    opacity   0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: opacity, transform;
+  transition: opacity 0.22s ease;
+  will-change: opacity;
 }
 
 .layer-helmet-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* object-position: center shows the helmet centered in the div.
-     Tweak the Y value (currently 40%) to shift the face up/down
-     if the eye slits don't align with the portrait eyes.             */
   object-position: center 38%;
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
 }
 
-/* ── Layer 3: Blue eye-glow HUD accent ────────────────────────────────────
-   Mimics the Arc Reactor / eye-slit glow of the Iron Man helmet.
-   Positioned at eye level (--hud-top) across the face width.            */
+/* ── Layer 3: Glow that tracks the reveal band ────────────────────────────
+   JS sets --glow-y (px from top of the stage) and we translateY the
+   element so the glow aura follows the mouse vertically.                 */
 
 .layer-hud-glow {
   position: absolute;
   z-index: 4;
-  top:    var(--hud-top);
-  left:   20%;
-  width:  60%;
-  height: 8%;
+  /* start at top of stage; JS translates it to cursor row */
+  top: 0;
+  left: 8%;
+  width: 84%;
+  height: 0;                  /* zero height — glow lives in ::before    */
+  transform: translateY(var(--glow-y, 50%));
   pointer-events: none;
-
-  /* Two soft elliptical glows, one per eye */
-  background:
-    radial-gradient(ellipse 30% 100% at 32% 50%, rgba(20, 200, 255, 0.92), rgba(20, 200, 255, 0.28) 55%, transparent 100%),
-    radial-gradient(ellipse 30% 100% at 68% 50%, rgba(20, 200, 255, 0.92), rgba(20, 200, 255, 0.28) 55%, transparent 100%);
-  filter: blur(4px);
+  overflow: visible;
 
   opacity: 0;
-  transform: scaleX(0.6);
-  transition:
-    opacity   0.3s ease 0.28s,
-    transform 0.3s ease 0.28s;
+  transition: opacity 0.22s ease;
   will-change: opacity, transform;
 }
 
-/* ── Hover / suited state ─────────────────────────────────────────────────
-   CSS handles the reveal on :hover. JS handles the 3D tilt only.        */
+.layer-hud-glow::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0; right: 0;
+  height: 160px;
+  top: -80px;                 /* centred on the zero-height element      */
+  background: radial-gradient(
+    ellipse 90% 45% at 50% 50%,
+    rgba(225, 36, 46, 0.28)  0%,
+    rgba(212, 162, 76, 0.16) 40%,
+    transparent              78%
+  );
+  filter: blur(8px);
+}
+
+/* ── Hover: opacity only — band position drives the reveal ───────────────  */
 
 .hero-stage:hover .layer-helmet-face,
 .hero-stage.is-suited .layer-helmet-face {
   opacity: 1;
-  transform: scale(1) translateY(0);
 }
 
 .hero-stage:hover .layer-hud-glow,
 .hero-stage.is-suited .layer-hud-glow {
   opacity: 1;
-  transform: scaleX(1);
+}
+
+/* Touch / is-suited: reveal full helmet with a soft radial mask instead
+   of a band (there is no cursor to track on touch).                      */
+.hero-stage.is-suited .layer-helmet-face {
+  -webkit-mask-image: radial-gradient(
+    ellipse 52% 52% at 50% 50%,
+    black 58%, rgba(0,0,0,0.55) 76%, transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 52% 52% at 50% 50%,
+    black 58%, rgba(0,0,0,0.55) 76%, transparent 100%
+  );
+  transition: opacity 0.38s ease;
 }
 
 /* ── Reduced motion ───────────────────────────────────────────────────────  */
