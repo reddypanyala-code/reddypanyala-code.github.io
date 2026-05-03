@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab 2 — Force, EMG, and Fatigue · Vishwak Panyala</title>
+    <meta name="description" content="ISyE 552 Lab 2 — handgrip endurance across five %MVC levels, with Borg RPE and EMG (RMS, MPF) to triangulate localized muscle fatigue." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#labs">Labs</a><span>›</span>Lab 2</p>
+          <p class="eyebrow">Lab 2 · Force &amp; EMG · Spring 2026</p>
+          <h1>Handgrip Endurance, Strength Loss, and EMG Fatigue</h1>
+          <p class="lead">Six volunteers held a handgrip dynamometer at 20%, 40%, 60%, 80%, and 100% of their maximum until they couldn't anymore. Borg RPE and EMG turned the experience into numbers.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Purpose</h2>
+            <p>Handgrip tasks are a clean way to study localized muscle fatigue because the force level can be set as a percentage of each person's own maximum (MVC). At higher force levels, endurance drops fast and the body shifts strategies to keep going. The lab measured that drop quantitatively — both how it <em>feels</em> (Borg RPE), how it <em>performs</em> (endurance time, post-trial MVC), and how it <em>looks physiologically</em> (EMG amplitude and frequency content). Subjective effort alone is not enough, so multiple data sources triangulate the actual fatigue signal.</p>
+
+            <h2>Methods</h2>
+            <p>Six volunteers (three male, three female) completed handgrip endurance trials using a dynamometer and stopwatch. After a brief warm-up, each participant performed three MVC trials with two minutes rest between each; the maximum value was used as the pre-MVC. Target forces were set to 20%, 40%, 60%, 80%, and 100% of pre-MVC. Trial order was randomized per participant, and participants rested ten minutes between endurance trials.</p>
+            <p>For each trial, participants matched the target force until volitional exhaustion and endurance time (ET) was recorded. Immediately after exhaustion, participants performed one post-MVC, and percent strength loss was calculated as (pre-MVC − post-MVC) × 100 / pre-MVC. RPE on the Borg 6–20 scale was collected every 30 seconds during the hold.</p>
+            <p>For one participant (P1), EMG was collected from the flexor carpi radialis and extensor carpi radialis using a Noraxon Ultium EMG system, with a 10-second resting baseline. EMG was processed in 10-second windows to compute root-mean-square (RMS) and median power frequency (MPF). For RPE–EMG comparisons, EMG values were resampled to 30-second bins.</p>
+
+            <h2>Results</h2>
+
+            <h3>Mean endurance time by %MVC</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>%MVC</th><th>Male mean ET (s)</th><th>Female mean ET (s)</th><th>Rohmert curve ET (s)</th></tr></thead>
+                <tbody>
+                  <tr><td>20%</td><td>112.67</td><td>175.33</td><td>385.93</td></tr>
+                  <tr><td>40%</td><td>47.67</td><td>56.44</td><td>96.99</td></tr>
+                  <tr><td>60%</td><td>21.67</td><td>18.99</td><td>45.34</td></tr>
+                  <tr><td>80%</td><td>5.00</td><td>13.32</td><td>21.36</td></tr>
+                  <tr><td>100%</td><td>0.00</td><td>3.33</td><td>7.01</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Mean percent strength loss by %MVC</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>%MVC</th><th>Male mean strength loss</th><th>Female mean strength loss</th></tr></thead>
+                <tbody>
+                  <tr><td>20%</td><td>33.1%</td><td>35.1%</td></tr>
+                  <tr><td>40%</td><td>47.9%</td><td>40.7%</td></tr>
+                  <tr><td>60%</td><td>36.4%</td><td>34.4%</td></tr>
+                  <tr><td>80%</td><td>33.9%</td><td>30.9%</td></tr>
+                  <tr><td>100%</td><td>43.4%</td><td>24.2%</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>RPE growth during sustained 20% MVC holds</h3>
+            <ul class="metric-strip">
+              <li><strong>3.67</strong><span>RPE units / minute (male)</span></li>
+              <li><strong>2.97</strong><span>RPE units / minute (female)</span></li>
+            </ul>
+
+            <h3>EMG fatigue signature for P1 (extensor)</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Condition</th><th>RMS slope (per s, 10 s windows)</th><th>MPF slope (Hz / s)</th></tr></thead>
+                <tbody>
+                  <tr><td>20% MVC</td><td>+0.118</td><td>−0.386</td></tr>
+                  <tr><td>40% MVC</td><td>+0.989</td><td>−1.652</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>RPE ↔ EMG correlations (P1, 20% MVC, EMG resampled to 30 s)</h3>
+            <ul class="metric-strip">
+              <li><strong>r = +0.994</strong><span>RPE vs. extensor EMG RMS</span></li>
+              <li><strong>r = −0.982</strong><span>RPE vs. extensor EMG MPF</span></li>
+            </ul>
+
+            <h2>What I found</h2>
+            <p><strong>Endurance dropped sharply as force demand rose.</strong> The steep decline between 20% and 60% MVC matched what we saw during data collection — even small increases in required force made the hold feel much less steady and much more time-limited. At 100% MVC, several trials were recorded as 0 s, so 100% is best treated as an immediate failure/transition point rather than a smooth continuation of the endurance curve.</p>
+            <p><strong>Our class endurance times were generally lower than Rohmert's idealized curve</strong>, especially at 20–40% MVC. Rohmert's reference is built from controlled conditions; our trials included normal variation in force matching, grip technique, dynamometer fit, and how strictly each person treated the "can't maintain it anymore" endpoint.</p>
+            <p><strong>Variability was visible in the individual data.</strong> Differences in hand size, forearm posture, and unintended recruitment of shoulder/upper arm shifted the load between muscle groups. Motivation and pain tolerance also shaped the endpoint.</p>
+            <p><strong>RPE captured within-trial change well.</strong> A linear fit at 20% MVC gave roughly 3.67 RPE units per minute for males and 2.97 units per minute for females. RPE is fast to collect and surprisingly informative — but it's still subjective.</p>
+            <p><strong>EMG showed the textbook fatigue signature.</strong> RMS rose over time and MPF declined for P1 — increased recruitment plus a shift of the power spectrum toward lower frequencies. The change was steeper at 40% MVC than at 20% MVC, which is the expected dose-response.</p>
+            <p><strong>RPE and EMG agreed strongly when both were available.</strong> At 20% MVC for P1, RPE and extensor RMS correlated at r = +0.994; RPE and extensor MPF correlated at r = −0.982. Subjective effort and physiological fatigue moved together — which is the kind of cross-method agreement that makes a finding load-bearing.</p>
+
+            <h2>Design recommendations</h2>
+            <dl class="rec-block">
+              <dt>Reduce required grip force on sustained tasks</dt>
+              <dd>Better handle shape, friction-grip surfaces, or power-assist tools that lower the percent of MVC required to hold a tool.</dd>
+              <dd><strong>Expected impact:</strong> longer effective endurance per cycle; lower repetitive-strain injury risk.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Build in micro-breaks for tasks above ~30% MVC</dt>
+              <dd>Endurance falls sharply once force demand crosses roughly the 30% MVC range. Short, frequent rests beat long, infrequent ones.</dd>
+              <dd><strong>Expected impact:</strong> slower onset of localized fatigue across a shift; fewer compensatory awkward postures.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Use Borg RPE for routine workplace monitoring</dt>
+              <dd>RPE tracks fatigue cheaply and meaningfully. Reserve EMG for targeted evaluations or redesign studies; reserve dynamometry for higher-risk jobs and pre/post shift screening.</dd>
+              <dd><strong>Expected impact:</strong> earlier detection of cumulative fatigue without a sensor budget for every workstation.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Rotate tasks and reduce repetition</dt>
+              <dd>Distribute high-force gripping across muscle groups and across the shift.</dd>
+              <dd><strong>Expected impact:</strong> reduced localized fatigue accumulation; better sustained performance late in shift.</dd>
+            </dl>
+
+            <h2>Reflection</h2>
+            <p>Each measure has a different blind spot. Endurance time is intuitive but heavily motivation-dependent. Strength loss is more objective but timing-sensitive — small delays in the post-MVC change the number even if underlying fatigue is similar. RPE is low-cost and informative but still subjective and scale-interpretation differs across people. EMG provides physiological detail but needs careful electrode placement, low-noise recording, and thoughtful processing.</p>
+            <p>The most defensible conclusion in this lab came from the place where all four measures agreed: as %MVC rose, ET fell, strength loss climbed, RPE rose monotonically, EMG RMS rose, and EMG MPF fell. From an occupational perspective the implication is straightforward — sustained high-force gripping is risky precisely because endurance collapses quickly, and workers compensate with awkward postures or higher co-contraction once they're past the comfortable range.</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#labs">Back to all labs</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

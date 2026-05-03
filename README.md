@@ -1,33 +1,29 @@
-# Vishwak Parth Reddy Panyala Portfolio
+# Vishwak Parth Reddy Panyala — ISyE 552 Portfolio
 
-GitHub Pages portfolio website for `reddypanyala-code.github.io`.
+Personal portfolio website for ISyE 552 (Human Factors Engineering Design and Evaluation), UW–Madison, Spring 2026.
+
+Live at **https://reddypanyala-code.github.io/**
 
 ## Structure
 
-- `index.html` - main one-page portfolio
-- `css/style.css` - primary styling and responsive layout
-- `js/main.js` - nav, reveal animations, and portrait interaction
-- `blog/` - long-form reflection posts
-- `projects/` - project case-study pages and artifacts
-- `resume/` - downloadable resume PDF
-- `images/` - user-provided profile images
-
-## Local Preview
-
-Run a simple local server from this folder:
-
-```bash
-python3 -m http.server 8000
+```
+├── index.html               # Single-page portfolio (hero, about, skills, labs, project, blogs, contact)
+├── css/                     # Design system
+│   ├── tokens.css           # Color, type, spacing custom properties
+│   ├── base.css             # Reset and typography
+│   ├── hero.css             # Hero section and helmet morph animation
+│   └── components.css       # Navigation, cards, tables, buttons, footer
+├── js/
+│   ├── hero.js              # Pointer tracking and suit-up toggle
+│   └── nav.js               # Mobile menu and scroll-spy
+├── images/                  # Hero portrait and Iron Man bust
+├── labs/                    # Lab 1 (RULA/REBA), Lab 2 (Force/EMG), Lab 3 (Workload)
+├── project/                 # Final project: VR training evaluation
+├── blog/                    # 5 guest lecture reflections
+└── resume/                  # PDF resume
 ```
 
-Then open <http://localhost:8000>.
+## Course
 
-## Publish Flow
-
-```bash
-git add .
-git commit -m "Update portfolio content"
-git push
-```
-
-The site deploys at: <https://reddypanyala-code.github.io>
+ISyE 552 — Human Factors Engineering Design and Evaluation  
+University of Wisconsin–Madison · Spring 2026

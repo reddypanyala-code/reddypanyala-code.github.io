@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Aviation Human Factors · Vishwak Panyala</title>
+    <meta name="description" content="Guest lecture reflection — Dr. Arjun Rao (Boeing) on how aviation human factors connects safety, workload, and automation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#blog">Blog</a><span>›</span>Guest Lecture 1</p>
+          <p class="eyebrow">Guest Lecture 1 · Dr. Arjun Rao · Boeing</p>
+          <h1>How Aviation Human Factors Connects Safety, Workload, and Automation</h1>
+          <p class="lead">A reflection on Dr. Rao's lecture on operating at the intersection of Human Factors engineering and commercial aviation — where "more problems means more opportunities."</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Context</h2>
+            <p>Dr. Arjun Rao is a Human Factors engineer at Boeing who works on the intersection of pilot workload, automation design, and safety in commercial aircraft systems. His lecture for ISyE 552 drew on real program experience — not a textbook walk-through, but a practitioner's account of what happens when human factors evidence collides with schedule, certification, and organizational pressure.</p>
+
+            <h2>Key Insight</h2>
+            <p>The framing that stayed with me the most was Dr. Rao's description of the divide between normal and non-normal operations. In commercial aviation, the vast majority of system design effort goes into normal-operations procedures — the routine flight from gate to gate that goes exactly as planned. Human factors work in that space is about efficiency, automation workload, and interface clarity. But the situations where HF evidence actually saves lives are almost always in non-normal operations: the unexpected failure, the degraded-mode procedure, the crew that has never faced this configuration before.</p>
+            <p>The design problem is that non-normal operations are rare by definition — so the data is thin, the scenarios are hard to train for, and the pressure to move on to the next system release is high. Dr. Rao made the point that the best aviation HF practitioners treat every near-miss and every unusual event report as a design signal, not just a compliance checkbox. They're building the case for why a particular cockpit interaction, automation state transition, or alert logic is worth redesigning — and that case has to be made in terms that resonate with program managers, not just safety researchers.</p>
+
+            <h2>Connection to Course Concepts</h2>
+            <p>Dr. Rao's talk grounded several concepts from ISyE 552 in a concrete domain. Task analysis — particularly Hierarchical Task Analysis — is the backbone of how Boeing characterizes crew workload at different phases of flight. It's not just academic; the task analysis directly informs how procedures are written, how automation transitions are scheduled, and how checklists are sequenced. The emphasis on decomposing a task into its cognitive and motor sub-steps, and then asking "where in this sequence does the operator have too much to hold in working memory?" is exactly the analysis process we practiced in lab.</p>
+            <p>The discussion of automation also connected directly to the HF concept of out-of-the-loop syndrome. When automation handles more of the flight envelope, pilot proficiency on manual control erodes — a well-documented hazard. The design challenge is not whether to automate, but how to design automation handoffs that keep the human's mental model current and their manual skills practiced. That's a workload question, a situation awareness question, and a skill-decay question all at once.</p>
+
+            <h2>Personal Takeaway</h2>
+            <p>"More problems means more opportunities" was Dr. Rao's framing for why aviation is a compelling career domain for HF engineers. Every incident is a design gap. Every near-miss is a question the system didn't answer well enough. I found this genuinely motivating — it reframes failure not as something to be avoided at all costs (which can create a culture of under-reporting) but as a source of signal that should be surfaced and acted on. The implication for my own career is that the most interesting work happens at the boundary between human capability and system complexity, and the skill worth building is the ability to translate that boundary into specific design changes rather than general recommendations.</p>
+            <p>I also left the lecture thinking about how the academic-to-industry transition shapes how you engage with evidence. Dr. Rao noted that in industry you rarely have the time or resources to run the ideal study — you work with the minimum amount of evidence that's sufficient to make the decision. Knowing how to make a defensible case from limited data, and knowing when data is insufficient to act on, is a skill that doesn't come naturally from coursework alone. The labs in ISyE 552 are a start at building that judgment.</p>
+
+            <h2>Closing Question</h2>
+            <p>As automation in aviation becomes more capable — and as human-automation teaming concepts move toward higher levels of autonomy — what does the HF engineer's role look like in 20 years? Does the job shift entirely toward AI system design and evaluation, or does the core of the work (keeping the human's mental model current, preventing skill decay, designing for non-normal operations) stay fundamentally the same?</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#blog">Back to all posts</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

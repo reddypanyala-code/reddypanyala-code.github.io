@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Your Portfolio Is a Human Factors Artifact · Vishwak Panyala</title>
+    <meta name="description" content="Guest lecture reflection — Dr. Rohith Karthikeyan (Apple) on treating portfolio design as a human factors problem, with recruiters as the user." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#blog">Blog</a><span>›</span>Guest Lecture 4</p>
+          <p class="eyebrow">Guest Lecture 4 · Dr. Rohith Karthikeyan · Apple</p>
+          <h1>Your Portfolio Is a Human Factors Artifact</h1>
+          <p class="lead">Dr. Karthikeyan's second lecture flipped the lens: the recruiter is the user, the portfolio is the interface, and Nielsen's heuristics apply to both. Here's how I applied that to this site.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Context</h2>
+            <p>Dr. Rohith Karthikeyan returned to ISyE 552 for a second lecture — this time focused not on research methodology but on the practice of presenting yourself as an HF professional. The lecture grew from a simple provocation: if we spend a semester learning to design for users, why do so many HF students build portfolios that don't apply any of those principles to themselves? A portfolio is an interface. The recruiter or hiring manager is the user. The task is to evaluate whether this person can do the job.</p>
+
+            <h2>Key Insight</h2>
+            <p>Dr. Karthikeyan's central argument was that a portfolio should be designed with the same evidence-based intentionality you'd apply to any other interface evaluation. Recruiters are time-constrained, scanning many portfolios in sequence, looking for specific signals — skills, evidence of process, communication quality, domain fit. Designing for that task means understanding the recruiter's mental model, reducing their cognitive load, and making the highest-signal information findable in under 30 seconds.</p>
+            <p>He organized the requirements around five criteria: <strong>findable</strong> (can the recruiter get to the relevant content?), <strong>readable</strong> (is the text clear and well-organized?), <strong>scannable</strong> (can key points be absorbed at a glance?), <strong>fast</strong> (does the site load and navigate quickly?), and <strong>accessible</strong> (does it work for users with varying abilities and devices?). These map almost directly onto Nielsen's usability heuristics — particularly visibility of system status, match with the user's mental model, flexibility and efficiency of use, and aesthetic minimalist design.</p>
+
+            <h2>Connection to Course Concepts</h2>
+            <p>The lecture connected HF principles to a domain that students have direct skin in the game on. Nielsen's 10 heuristics were discussed not as abstract rules but as design decisions with concrete portfolio implications. "Error prevention" in a portfolio context means not including ambiguous wording that makes the reader unsure what you actually did on a project. "Recognition rather than recall" means using clear section labels and consistent visual hierarchy so the recruiter can orient without having to memorize the navigation scheme. "Aesthetic and minimalist design" means removing everything that doesn't contribute to the evaluation task — decorative elements, lengthy text, irrelevant project descriptions.</p>
+            <p>The emphasis on matching the user's mental model was particularly useful. A recruiter looking for an HF engineer expects to see: a clear statement of what you can do, evidence of HF-specific skills (not just general "research"), and at least one detailed example of a project where you applied those skills and got a measurable outcome. If that structure isn't obvious within the first screenful, you've failed the information architecture task — regardless of how impressive the content is.</p>
+
+            <h2>How I Applied This to This Portfolio</h2>
+            <p>Building this site directly after Dr. Karthikeyan's lecture made his framing highly actionable. Here are the specific design decisions I made in response:</p>
+            <ul>
+              <li><strong>Navigation is flat and labeled for the recruiter's task</strong> — About, Skills, Labs, Project, Blog, Contact. No ambiguity about where to find evidence of HF competency.</li>
+              <li><strong>Each lab page follows the same structure</strong> — Purpose, Methods, Results, Findings, Recommendations, Reflection — so a recruiter who reads one knows exactly what to expect from the others. Consistency reduces cognitive load.</li>
+              <li><strong>Metric strips surface the key numbers at a glance</strong> — you don't have to read a paragraph to find that the RPE–EMG correlation was r = 0.994. Scannability by design.</li>
+              <li><strong>The recommendations section leads with the action, not the rationale</strong> — following the design pattern that "the recommendation is what changes a decision." Evidence supports it; the decision point is first.</li>
+              <li><strong>Semantic HTML and keyboard navigation</strong> — skip-link, proper heading hierarchy, landmark regions, focus-visible rings. Accessibility was treated as a correctness requirement, not an afterthought.</li>
+              <li><strong>Reduced-motion respect</strong> — the hero animation degrades gracefully for users who prefer reduced motion. A portfolio that causes discomfort or inaccessibility is failing its own user.</li>
+            </ul>
+
+            <h2>Personal Takeaway</h2>
+            <p>The most useful reframe in the lecture was treating the portfolio as a product rather than a document. A document is written once and read linearly. A product is designed for a task, evaluated against success metrics, and iterated based on feedback. Thinking of this portfolio as a product meant I had to ask: what does success look like from the recruiter's perspective? How would I know if it's working? What's the equivalent of a conversion rate or task completion metric?</p>
+            <p>I don't have quantitative feedback on this portfolio yet. But the discipline of asking those questions changed how I approached structural decisions — from "what do I want to say?" to "what does the recruiter need to see?" Those two questions don't always have the same answer, and the design should serve the second one.</p>
+
+            <h2>Closing Question</h2>
+            <p>Dr. Karthikeyan described the recruiter as a user with a specific task. But recruiters at Apple, Boeing, and Instacart probably have very different task models — different signals they're looking for, different thresholds for "enough evidence," different tolerance for depth vs. breadth. Is there a single portfolio design that works for all of them, or does personalizing a portfolio for a specific company/role represent the same kind of audience analysis we'd do for any user research study?</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#blog">Back to all posts</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

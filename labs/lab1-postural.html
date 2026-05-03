@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab 1 — Postural Assessment (RULA/REBA vs. Pose Estimation) · Vishwak Panyala</title>
+    <meta name="description" content="ISyE 552 Lab 1 — comparing single-frame RULA and REBA observational scoring with full-clip pose-estimation joint angles across two manual-handling tasks." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#labs">Labs</a><span>›</span>Lab 1</p>
+          <p class="eyebrow">Lab 1 · Physical ergonomics · Feb 17, 2026</p>
+          <h1>Postural Assessment — RULA/REBA vs. Pose Estimation</h1>
+          <p class="lead">Five participants. Two manual-handling tasks. One question: when a quick observational score and a full-clip pose-estimation analysis disagree, which one tells the truth about ergonomic risk?</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Purpose</h2>
+            <p>RULA and REBA are quick observational tools that flag awkward postures and the likelihood of musculoskeletal strain. They're cheap and fast — but they score one selected moment, not the whole task. Camera-based pose estimation, by contrast, gives joint angles continuously across the clip. This lab tests both methods on the same trials so I could see what each catches that the other misses.</p>
+
+            <h2>Methods</h2>
+            <p>Five participants completed two short manual-handling tasks at a simple workstation built from a lightweight cardboard box and a table-height surface:</p>
+            <ul>
+              <li><strong>Task 1 — Packaging.</strong> A short reach/place/pack/reposition cycle, scored with RULA (upper-body strain).</li>
+              <li><strong>Task 2 — Cargo handling.</strong> Lifting and transferring the box between two marked locations, scored with REBA (whole-body strain).</li>
+            </ul>
+            <p>Each clip was paused at the posture that looked most demanding for that lab's target assessment, and I scored using the standard worksheets. The same trimmed videos were then run through the provided camera-based pose-estimation script to extract per-frame joint angles for trunk, neck, shoulder, elbow, wrist, and knee. From those angles I calculated mean / SD / max plus temporal exposure: % of time trunk flexion exceeded 20° and 60°, and % of time shoulder flexion exceeded 45°. Finally I correlated each observational score with the angle-based metrics across participants using Pearson's r.</p>
+
+            <h2>Results</h2>
+
+            <h3>Observational scores</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Participant</th><th>Task 1 RULA</th><th>RULA action</th><th>Task 2 REBA</th><th>REBA risk</th></tr></thead>
+                <tbody>
+                  <tr><td>P1</td><td>4</td><td>Action Level 2 — investigate further</td><td>7</td><td>Medium risk</td></tr>
+                  <tr><td>P2</td><td>3</td><td>Action Level 2 — investigate further</td><td>6</td><td>Medium risk</td></tr>
+                  <tr><td>P3</td><td>3</td><td>Action Level 2 — investigate further</td><td>5</td><td>Medium risk</td></tr>
+                  <tr><td>P4</td><td>3</td><td>Action Level 2 — investigate further</td><td>7</td><td>Medium risk</td></tr>
+                  <tr><td>P5</td><td>4</td><td>Action Level 2 — investigate further</td><td>5</td><td>Medium risk</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Pose-estimation summary — Task 1 packaging (mean across participants)</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Joint</th><th>Mean of Mean (°)</th><th>Mean of Max (°)</th></tr></thead>
+                <tbody>
+                  <tr><td>Trunk flexion</td><td>12.7</td><td>21.5</td></tr>
+                  <tr><td>Neck flexion</td><td>60.9</td><td>66.9</td></tr>
+                  <tr><td>Shoulder flexion</td><td>24.5</td><td>45.0</td></tr>
+                  <tr><td>Elbow flexion</td><td>43.0</td><td>73.1</td></tr>
+                  <tr><td>Knee flexion</td><td>28.5</td><td>37.8</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Temporal exposure — Task 1 packaging</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Threshold</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>Mean (SD)</th></tr></thead>
+                <tbody>
+                  <tr><td>% time trunk flexion &gt; 20°</td><td>5.06%</td><td>0.00%</td><td>0.00%</td><td>4.95%</td><td>57.14%</td><td>13.43% (24.56)</td></tr>
+                  <tr><td>% time trunk flexion &gt; 60°</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00% (0.00)</td></tr>
+                  <tr><td>% time shoulder flexion &gt; 45°</td><td>15.19%</td><td>0.00%</td><td>0.00%</td><td>5.86%</td><td>1.19%</td><td>4.45% (6.47)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Pose-estimation summary — Task 2 cargo handling (mean across participants)</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Joint</th><th>Mean of Mean (°)</th><th>Mean of Max (°)</th></tr></thead>
+                <tbody>
+                  <tr><td>Trunk flexion</td><td>14.8</td><td>31.6</td></tr>
+                  <tr><td>Neck flexion</td><td>57.9</td><td>66.2</td></tr>
+                  <tr><td>Shoulder flexion</td><td>23.5</td><td>50.6</td></tr>
+                  <tr><td>Elbow flexion</td><td>38.2</td><td>70.9</td></tr>
+                  <tr><td>Knee flexion</td><td>21.1</td><td>32.6</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Temporal exposure — Task 2 cargo handling</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Threshold</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>Mean (SD)</th></tr></thead>
+                <tbody>
+                  <tr><td>% time trunk flexion &gt; 20°</td><td>13.35%</td><td>33.06%</td><td>15.24%</td><td>42.86%</td><td>30.16%</td><td>26.93% (12.48)</td></tr>
+                  <tr><td>% time trunk flexion &gt; 60°</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00% (0.00)</td></tr>
+                  <tr><td>% time shoulder flexion &gt; 45°</td><td>13.35%</td><td>0.00%</td><td>5.49%</td><td>35.17%</td><td>0.00%</td><td>10.80% (14.68)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Correlation: RULA/REBA vs. pose-estimation metrics</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Variable</th><th>Pearson r — Task 1 (RULA)</th><th>Pearson r — Task 2 (REBA)</th></tr></thead>
+                <tbody>
+                  <tr><td>Mean trunk flexion</td><td>0.617</td><td>0.500</td></tr>
+                  <tr><td>Max trunk flexion</td><td>—</td><td>0.798</td></tr>
+                  <tr><td>Mean neck flexion</td><td>0.475</td><td>—</td></tr>
+                  <tr><td>Mean shoulder flexion</td><td><strong>0.925</strong></td><td><strong>0.958</strong></td></tr>
+                  <tr><td>Max shoulder flexion</td><td>—</td><td>0.612</td></tr>
+                  <tr><td>Mean elbow flexion</td><td>0.743</td><td>—</td></tr>
+                  <tr><td>Mean knee flexion</td><td>−0.620</td><td>—</td></tr>
+                  <tr><td>% time trunk &gt; 20°</td><td>0.657</td><td>0.217</td></tr>
+                  <tr><td>% time shoulder &gt; 45°</td><td>0.528</td><td>0.733</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>What I found</h2>
+            <p><strong>Neck flexion stayed high across all of Task 1.</strong> Means ranged from 55.0° to 65.7°, consistent with the "head-down" posture of looking into a packing box. That's exactly why most RULA scores landed in the 3–4 range.</p>
+            <p><strong>Trunk flexion was the biggest source of variability.</strong> P5 spent 57.1% of the Task-1 clip above 20° trunk flexion — sustained forward bending, not a quick peak — while P2 and P3 spent 0% there. Two participants can score similarly on RULA and have very different cumulative exposure.</p>
+            <p><strong>Shoulder flexion was the strongest single predictor of both observational scores.</strong> Mean shoulder flexion correlated with RULA at r = 0.925 and with REBA at r = 0.958. This makes sense — both worksheets weight upper-arm posture heavily — and it's the cleanest case for using a pose-estimation pipeline as a screening tool before a manual scoring pass.</p>
+            <p><strong>The methods complement each other.</strong> RULA/REBA translate one demanding moment into a standard action level. Pose estimation gives the full timeline of variability and exposure. Where the two disagreed, the most likely explanation was frame selection — a brief extreme posture inflated the RULA/REBA score even when the average posture across the clip was moderate.</p>
+
+            <h2>Design recommendations</h2>
+            <dl class="rec-block">
+              <dt>Bring the work to a more neutral posture</dt>
+              <dd>Adjust table height, use a tilt bin, or reposition the box so the worker doesn't have to look down and reach forward. Targets the consistently high neck flexion observed in Task 1.</dd>
+              <dd><strong>Expected impact:</strong> lower mean neck flexion across the cycle and reduced sustained head-down time.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Stage cargo at waist-to-chest height</dt>
+              <dd>Use a height-adjustable cart, turntable, or intermediate shelf so the shoulder doesn't repeatedly move into high flexion. Several participants reached shoulder maxima near 80–90° during transfers, with non-trivial time above 45°.</dd>
+              <dd><strong>Expected impact:</strong> reduced cumulative shoulder load over a shift; lower MSK-injury risk.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Add wrist-neutral handling aids</dt>
+              <dd>Better-shaped handles, a different grasp strategy, or gloves that improve coupling. Wrist deviation stayed high in both tasks.</dd>
+              <dd><strong>Expected impact:</strong> lower distal-arm strain on repetitive cycles.</dd>
+            </dl>
+
+            <h2>Reflection</h2>
+            <p>The cleanest workflow uses both tools together. I'd start with pose estimation to screen the clip and automatically flag the candidate "worst" frames — say, the highest combined trunk and shoulder flexion — and then run RULA/REBA on those flagged frames to capture factors the camera can't infer (load, coupling, task context). When the two disagreed, that disagreement was usually the most informative finding: it told me that either the chosen frame wasn't representative or the pose model lost track of a joint.</p>
+            <p>This lab also reset my intuitions about how much body variability matters. P5 wasn't doing anything wrong — they just bend differently than the others — and a workstation that works for P1 may fail P5. Designing for the population means designing for that variance, not for an idealized average worker.</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#labs">Back to all labs</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — When UX Meets Regulation · Vishwak Panyala</title>
+    <meta name="description" content="Guest lecture reflection — Dr. Jackie Cha on medical device usability engineering, FDA classification, IEC 62366, and formative vs. summative evaluation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#blog">Blog</a><span>›</span>Guest Lecture 5</p>
+          <p class="eyebrow">Guest Lecture 5 · Dr. Jackie Cha, PhD CPE</p>
+          <h1>When UX Meets Regulation</h1>
+          <p class="lead">Medical device usability isn't just good design — it's a regulatory requirement. Dr. Cha's lecture on FDA classification, IEC 62366, and the locked summative study showed how human factors becomes legally load-bearing.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Context</h2>
+            <p>Dr. Jackie Cha, PhD, CPE (Certified Professional Ergonomist) is a human factors specialist with deep expertise in medical device usability engineering. Her lecture for ISyE 552 covered the regulatory and procedural landscape that governs how HF evidence is collected, documented, and submitted for medical device approval in the United States. This is a domain where the stakes of poor usability design are high — not just user frustration, but patient injury or death — and where the FDA has progressively strengthened its expectations for human factors evidence.</p>
+
+            <h2>Key Insight</h2>
+            <p>The concept that most changed my mental model was the distinction between <strong>FDA-cleared</strong> and <strong>FDA-approved</strong>. These two regulatory outcomes are often used interchangeably in public discourse, but they represent fundamentally different levels of evidence. FDA clearance (through the 510(k) pathway) means the device is substantially equivalent to a legally marketed predicate device — you're demonstrating comparability, not independent safety and efficacy. FDA approval (through the PMA pathway) means you've submitted original clinical data demonstrating that the device is safe and effective for its intended use. Class I devices (lowest risk) are generally exempt from premarket notification; Class II devices typically use 510(k); Class III devices (highest risk, supporting or sustaining life) require PMA.</p>
+            <p>The implication for human factors is significant: the usability evidence requirements scale with device classification. For a 510(k), you may need to demonstrate that the use-related risk of your device is no greater than your predicate. For a PMA device, the FDA expects a full formative evaluation record, a locked summative usability test protocol, and a human factors engineering report that maps every hazard-related use scenario to evidence that the design adequately mitigates use error.</p>
+
+            <h2>Formative vs. Summative Evaluation</h2>
+            <p>Dr. Cha drew a clear line between the two evaluation phases. <strong>Formative studies</strong> are iterative, exploratory, and used to identify and fix usability problems during development. They can use small samples, varied protocols, and think-aloud methods. They're not submitted to the FDA; they're the design evidence that informs the final device. <strong>Summative studies</strong> are the locked, definitive test of the finished device. They must use a realistic representative sample (FDA guidance suggests at least 15 users per intended-use group), a fixed protocol that cannot change once testing begins, realistic use scenarios with representative tasks and actual hazardous use situations, and explicit analysis of critical tasks — tasks where a use error could cause or contribute to serious harm.</p>
+            <p>The "locked" requirement for summative studies is particularly consequential. If you identify a problem during summative testing — a use error that your predicate analysis said shouldn't happen — you cannot simply tweak the design and re-test. The protocol is locked; you have to complete the study, document the finding, submit to FDA with an explanation of why the use error does not represent an unacceptable risk, or go back to formative development and start summative over with a revised protocol.</p>
+
+            <h2>The HeartMate II Case</h2>
+            <p>Dr. Cha discussed a real-world example involving a ventricular assist device (VAD) — a left ventricular assist device (LVAD) used as a bridge to heart transplant. The case illustrated how a single critical use error (incorrect driveline connection, failure to detect alarm conditions, or misunderstanding of alarm priority) can be fatal in a device that keeps the patient's heart pumping. The HF findings from real-world adverse event reports fed directly into redesigned alarms, simplified driveline connectors, and mandatory caregiver training programs. The regulatory pathway meant those design changes had to be validated in new usability studies before the updated device could be marketed.</p>
+            <p>This case made the regulatory framework feel less like bureaucratic overhead and more like a structured feedback loop between field failures and design improvement — which is exactly how a well-functioning safety system should work.</p>
+
+            <h2>Connection to Course Concepts</h2>
+            <p>The IEC 62366 standard (Application of Usability Engineering to Medical Devices) operationalizes many of the same principles covered in ISyE 552. Task analysis, use-error analysis, and human factors validation testing are all required elements of a 62366-compliant usability file. The standard requires manufacturers to define the intended use, identify the use environment, characterize the intended user population, perform a use-related risk analysis, and document the entire formative and summative evaluation record. That's the full HF evaluation cycle — from task analysis through multi-method evidence collection to evidence-based recommendations — applied in a legally binding context.</p>
+            <p>The emphasis on user population characterization was particularly interesting. In ISyE 552 labs, we often work with convenience samples of students. In a 510(k) or PMA submission, the FDA will scrutinize whether your usability test sample actually represents the intended use population — age range, clinical training level, care setting. A device tested only on trained nurses in a lab may have very different usability when deployed with minimally trained home caregivers or elderly patients with limited dexterity. The regulatory requirement to document user population diversity is a structural enforcement of the ecological validity concern that shows up repeatedly in HF research methodology.</p>
+
+            <h2>Personal Takeaway</h2>
+            <p>The most practically useful thing I learned was the relationship between use-error analysis and critical task identification. Not all use errors are equal. A critical task is one where a use error could cause or contribute to a serious hazard. Identifying which tasks are critical — and designing both the device interface and the evaluation protocol around those tasks — is the core skill in medical device HF. It requires judgment about likelihood, severity, and controllability of use errors, not just a checklist of usability heuristics.</p>
+            <p>Dr. Cha also made the point that a common mistake is separating the HF team from the risk management team in medical device development. Use-related risk analysis and hazard analysis are the same activity viewed from two perspectives — one from usability, one from safety. Organizations that run those activities in silos produce disconnected documentation and miss the design implications that live at the intersection. Integrating those functions is a structural design problem as much as a technical one.</p>
+
+            <h2>Closing Question</h2>
+            <p>As AI diagnostic tools and AI-assisted clinical decision support become medical devices in their own right — subject to FDA oversight — how does the usability engineering framework adapt? The "use scenario" for an AI-assisted diagnosis might look very different from a physical device: the hazards may involve algorithm output interpretation, alert fatigue from AI recommendations, or over-reliance on automated suggestions. Is IEC 62366 adequate for this class of device, or is the field developing new frameworks for HF evaluation of AI in clinical settings?</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#blog">Back to all posts</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

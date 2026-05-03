@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Why One Data Source Is Never Enough · Vishwak Panyala</title>
+    <meta name="description" content="Guest lecture reflection — Dr. Rohith Karthikeyan (Apple) on triangulation, umwelten, and integrating with user behavior rather than changing it." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#blog">Blog</a><span>›</span>Guest Lecture 3</p>
+          <p class="eyebrow">Guest Lecture 3 · Dr. Rohith Karthikeyan · Apple</p>
+          <h1>Why One Data Source Is Never Enough</h1>
+          <p class="lead">Dr. Karthikeyan's lecture on triangulation — and the concept of umwelten — reframed how I think about the gap between what we measure and what users actually experience.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Context</h2>
+            <p>Dr. Rohith Karthikeyan is a Human Factors researcher at Apple, where he works on evaluating how people interact with products across a wide range of contexts and user populations. His lecture drew on both his academic background and his industry experience to make the case for methodological triangulation — not as a luxury, but as a structural necessity given how much any single measurement approach misses.</p>
+
+            <h2>Key Insight</h2>
+            <p>Dr. Karthikeyan introduced the concept of <em>umwelten</em> — the perceptual worlds that different organisms (or users) inhabit. The word comes from biosemiotics: each species perceives and responds to a different slice of the physical environment, defined by what its sensory and cognitive apparatus can detect. The implication for HF is that when we design for users, we are designing for people whose subjective experience of the product is fundamentally different from our own — and from each other's. No single observational frame captures the full umwelt of the user population.</p>
+            <p>His running example was running-shoe design: a shoe optimized for metabolic efficiency (maximum energy return) often trades away lateral stability, which is exactly the property that prevents ankle injuries in runners who pronate or have variable terrain. A designer who only measured oxygen consumption would conclude the shoe was excellent. A designer who also measured ankle kinematics would notice the stability problem. Neither measure alone is sufficient because the users' umwelt includes both the desire to run fast and the need to stay upright — and those two goals create design tension that only shows up when you measure both.</p>
+
+            <h2>Connection to Course Concepts</h2>
+            <p>The triangulation theme connects directly to the multi-measure approach we've used throughout ISyE 552's lab sequence. In Lab 2, we needed endurance time, strength loss, Borg RPE, and EMG together because each one captured a different dimension of the fatigue experience — behavioral, subjective, and physiological. In Lab 3, primary accuracy, NASA-TLX, and HRV each reflected a different part of the cognitive load response. The labs were structured to prove exactly the point Dr. Karthikeyan made: any single measure is blind to the dimensions it doesn't sample.</p>
+            <p>His emphasis on integrating with user behavior rather than trying to change it was also a theme I connected to the design-recommendation sections in each lab. The best ergonomic interventions don't require workers to retrain their movement patterns — they change the environment so that natural movement is safe movement. Micro-break scheduling, handle redesign, and workstation height adjustment are all examples of designs that work with human behavior, not against it. Dr. Karthikeyan framed this as respecting the user's umwelt — meeting them in the perceptual world they already occupy rather than asking them to occupy a different one.</p>
+
+            <h2>Personal Takeaway</h2>
+            <p>The idea that resonated most personally was the warning against single-frame evaluation. Dr. Karthikeyan made the point that HF evaluations are often designed around the "typical use case" — the idealized scenario where the user does what the designer expected. But real use is full of non-typical events: interruptions, distractions, unfamiliar edge cases, degraded conditions. A product that performs well in the typical case but catastrophically in the edge case may still be a dangerous product in deployment. The only way to discover those edge cases is to vary the measurement context — different users, different environments, different tasks — which is exactly what a triangulated multi-method study enables.</p>
+            <p>For my career, this translates into a personal commitment to always ask, before finalizing a recommendation: what would I be missing if this were my only data source? That's a simple question, but asking it routinely would have prevented a number of the most visible product-safety failures I'm aware of.</p>
+
+            <h2>Closing Question</h2>
+            <p>Dr. Karthikeyan described Apple's process for balancing triangulation rigor with the pace of product development cycles. My question is about the lower bound: what is the minimum triangulation that's worth doing? Is two methods meaningfully better than one, or does the real gain only come when you have three or more independent data sources? Is there an industry-standard heuristic for this, or is it always context-dependent?</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#blog">Back to all posts</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

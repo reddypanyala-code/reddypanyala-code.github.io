@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VR Training in Manufacturing · Vishwak Panyala</title>
+    <meta name="description" content="ISyE 552 final project — Perceptions of Virtual Reality Training in Manufacturing Environments. NASA-TLX, presence, cybersickness, ECG, and cognitive-load evaluation of a 24-task engine assembly simulation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#project">Project</a><span>›</span>Final Project</p>
+          <p class="eyebrow">Final Project · ISyE 552 · Spring 2026</p>
+          <h1>Perceptions of Virtual Reality Training in Manufacturing Environments</h1>
+          <p class="lead">Ten engineering students assembled a virtual motorcycle engine across 24 procedural tasks. We measured cognitive load, presence, cybersickness, and autonomic stress to answer one question: is VR a human-factors-sound training platform for manual assembly work?</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Project Overview</h2>
+            <p>Virtual reality is increasingly proposed as a training medium for complex manual procedures — particularly in manufacturing, where physical training environments are expensive to build, difficult to replicate across sites, and potentially hazardous for novices. Before committing to VR-based training programs, organizations need to understand how the VR experience itself affects the learner: does the simulator induce enough cognitive load that it competes with learning the procedure? Does the immersion feel real enough to transfer skills? Does it make people sick?</p>
+            <p>This study evaluated a commercially available VR platform — a motorcycle engine assembly simulation — on a group of engineering students with no prior VR experience. The goal was to characterize the training experience from a human-factors perspective: document workload, presence, and discomfort, identify their relationships, and translate findings into actionable design recommendations for organizations deploying VR training.</p>
+
+            <h2>Team</h2>
+            <ul>
+              <li>Samuel Noel</li>
+              <li><strong>Vishwak Reddy Panyala</strong></li>
+              <li>Isabelle Peters</li>
+              <li>Arya Raut</li>
+            </ul>
+
+            <h2>My Role</h2>
+            <p>I contributed to study design, data collection on participants, NASA-TLX and cognitive-load survey analysis, presence-survey scoring, design-recommendation drafting, and final report writing. Specifically, I developed the analysis pipeline for correlating the NASA-TLX subscale scores with presence and cybersickness outcomes, and drafted the design-recommendation section that maps each finding to a concrete interface or procedure change.</p>
+
+            <h2>Problem Statement</h2>
+            <p>Manufacturing training is high-stakes: errors in assembly can produce defective products, injure workers, or generate costly rework. Physical training requires dedicated equipment, floor space, and time with a skilled trainer. VR could address these constraints — but only if the cognitive cost of operating the VR system itself doesn't overwhelm a novice's capacity to actually learn the procedure. If the interface creates more workload than the task, trainees will learn the simulator, not the skill.</p>
+
+            <h2>Research Questions</h2>
+            <ol>
+              <li>Does a higher sense of presence in VR correlate with lower task performance time? (Hypothesis 1)</li>
+              <li>Does higher cybersickness correlate with lower presence? (Hypothesis 2)</li>
+              <li>Does higher cognitive load correlate with higher overall workload (NASA-TLX)? (Hypothesis 3)</li>
+            </ol>
+
+            <h2>Methods</h2>
+            <p>Ten engineering students (UW–Madison, undergraduate and graduate) participated. All were naive to the specific VR platform and had minimal prior VR experience. The VR environment simulated assembly of a motorcycle engine across 24 sequential tasks using hand controllers to pick, place, fasten, and verify components.</p>
+
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Measure</th><th>Instrument</th><th>Timing</th></tr></thead>
+                <tbody>
+                  <tr><td>Subjective workload</td><td>NASA-TLX (6 subscales, weighted)</td><td>Post-task</td></tr>
+                  <tr><td>Presence / immersion</td><td>Presence survey (Likert, 10 items)</td><td>Post-task</td></tr>
+                  <tr><td>Cybersickness</td><td>Simulator Sickness Questionnaire (SSQ)</td><td>Pre- and post-task</td></tr>
+                  <tr><td>Cognitive load</td><td>Paas cognitive-load single-item scale (1–9)</td><td>Post-task</td></tr>
+                  <tr><td>Physiological stress</td><td>ECG — HR and HRV (RMSSD)</td><td>Continuous during task</td></tr>
+                  <tr><td>Task performance</td><td>Completion time (s), error log</td><td>Automatic from simulator</td></tr>
+                  <tr><td>Behavioral observation</td><td>Video — controller use, hesitation, posture</td><td>Continuous during task</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>Data Collected</h2>
+            <ul class="metric-strip">
+              <li><strong>10</strong><span>participants</span></li>
+              <li><strong>24</strong><span>sequential assembly tasks</span></li>
+              <li><strong>14.72 min</strong><span>average completion time</span></li>
+              <li><strong>7</strong><span>data instruments deployed</span></li>
+            </ul>
+
+            <h2>Key Findings</h2>
+
+            <h3>Hypothesis 1 — Presence and performance time</h3>
+            <p>We found a weak negative correlation between presence scores and completion time (r = −0.28, p > 0.05). The relationship was in the expected direction — higher presence was associated with somewhat faster assembly — but did not reach statistical significance with n = 10. The finding is suggestive rather than conclusive: a larger sample is needed to confirm whether presence meaningfully shortens the time to complete procedural steps, or whether faster completion merely gives less time for the sense of immersion to break down.</p>
+
+            <h3>Hypothesis 2 — Cybersickness and presence</h3>
+            <p>Cybersickness (SSQ total score) showed a moderate negative correlation with presence (r = −0.52, p = 0.12). Participants who reported more nausea, disorientation, or oculomotor symptoms also reported lower immersion. This is the expected relationship: discomfort disrupts the suspension of disbelief that underlies presence. Though p-values did not reach 0.05, the effect size is plausible and consistent with the literature on VR sickness and immersion disruption.</p>
+
+            <h3>Hypothesis 3 — Cognitive load and NASA-TLX</h3>
+            <p>The single-item cognitive load measure correlated strongly with overall NASA-TLX score (r = +0.74, p = 0.015). This was the most statistically robust finding. Participants who rated the task as cognitively demanding also gave high NASA-TLX scores, confirming convergent validity between the two instruments in this context. The mental-demand subscale of NASA-TLX accounted for the largest share of weighted workload variance.</p>
+
+            <h3>NASA-TLX subscale breakdown</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Subscale</th><th>Mean score (0–100)</th><th>Most common weight ranking</th></tr></thead>
+                <tbody>
+                  <tr><td>Mental demand</td><td>64.5</td><td>1st (highest weight, 8/10 participants)</td></tr>
+                  <tr><td>Effort</td><td>58.2</td><td>2nd</td></tr>
+                  <tr><td>Frustration</td><td>52.1</td><td>3rd</td></tr>
+                  <tr><td>Temporal demand</td><td>44.8</td><td>4th</td></tr>
+                  <tr><td>Performance (self-rated)</td><td>43.0</td><td>5th</td></tr>
+                  <tr><td>Physical demand</td><td>31.4</td><td>6th (lowest weight, 9/10 participants)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Cybersickness prevalence</h3>
+            <p>Post-task SSQ total scores ranged from 7.5 to 64.2 (mean 31.4, SD 18.9). Three of ten participants reported SSQ scores above 40 — the threshold typically associated with notable discomfort requiring attention. Nausea and disorientation subscales were more elevated than oculomotor symptoms, suggesting vestibular–visual mismatch rather than display-related strain as the primary driver.</p>
+
+            <h2>Design Recommendations</h2>
+            <dl class="rec-block">
+              <dt>Prioritize psychomotor simulation fidelity over graphical richness</dt>
+              <dd>Mental demand was the dominant workload driver. Participants struggled more with unfamiliar controller mappings and unclear component orientation than with visual complexity. VR training platforms should invest in intuitive hand-interaction design (grasp/release/rotate mechanics that mirror real hand movements) before upgrading polygon count or texture resolution.</dd>
+              <dd><strong>Expected impact:</strong> lower mental demand subscale scores; faster procedural learning; less frustration-driven disengagement.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Add in-training support cues for novice learners</dt>
+              <dd>On tasks where participants hesitated for more than 10 seconds (observed in behavioral video for 7 of 24 task steps), completion time spiked and frustration ratings rose. Step-by-step guidance overlays, spatial audio prompts, or ghosted "next position" indicator visuals can reduce cognitive search cost without removing the learning challenge.</dd>
+              <dd><strong>Expected impact:</strong> lower frustration scores; shorter hesitation events; reduced total completion time without sacrificing transfer.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Improve instructional clarity on task sequence and component identification</dt>
+              <dd>The strongest predictor of high mental demand was uncertainty about which component to pick next — a procedural ambiguity problem, not a dexterity problem. Clear component labeling, color-coded assembly stages, and an explicit task progress indicator would address this without reducing task realism.</dd>
+              <dd><strong>Expected impact:</strong> faster orientation to each new task step; lower mental demand and effort ratings.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Build in mandatory cybersickness rest breaks</dt>
+              <dd>Three participants crossed the SSQ threshold for notable discomfort. VR training platforms should auto-prompt for a seated rest or headset removal after every 8–10 minutes of continuous use, and again if the user has not moved for more than 30 seconds (a behavioral indicator of disorientation-induced stillness).</dd>
+              <dd><strong>Expected impact:</strong> lower SSQ post-session scores; higher presence due to discomfort reduction; fewer session abandonments.</dd>
+            </dl>
+
+            <h2>Final Outcome</h2>
+            <p>The study confirmed that VR can function as a cognitively plausible training platform for manual assembly — cognitive load and NASA-TLX scores aligned well (Hypothesis 3 confirmed), and the presence–sickness relationship followed the expected pattern (Hypothesis 2 directionally supported). The presence–performance link (Hypothesis 1) requires a larger study to confirm. The practical conclusions are clear: the current platform imposes meaningful cognitive and physiological load on novice users, and that load is predominantly mental rather than physical. Reducing interface friction, clarifying procedural cues, and managing cybersickness onset would improve the training experience without compromising the immersion that makes VR transfer-effective.</p>
+
+            <h2>Reflection</h2>
+            <p>The most difficult methodological challenge in this study was disentangling task difficulty from interface difficulty. When a participant took 45 seconds on a single assembly step, was that because the engine task was complex, or because the controller mapping was unintuitive? Behavioral observation helped — hesitations where the participant moved the controller correctly but the game didn't register the action pointed to interface friction, not task complexity — but we didn't have a systematic way to score those events from video.</p>
+            <p>The ECG data added effort but limited return given our sample size. RMSSD variability between participants was large enough that group-level trends were obscured. In a study like this, a within-participant design with a rest baseline between tasks would give much stronger physiological signal than a single post-session comparison. The lesson I'd carry forward: physiological measures need to be powered more carefully than behavioral or self-report measures, because their between-person variance is almost always larger than expected.</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#project">Back to project overview</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>

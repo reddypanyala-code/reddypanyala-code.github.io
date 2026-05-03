@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab 3 — Cognitive Workload · Vishwak Panyala</title>
+    <meta name="description" content="ISyE 552 Lab 3 — measuring mental workload across n-back 1/2/3 conditions using primary task accuracy, NASA-TLX, and HRV (RMSSD, LF/HF ratio)." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/tokens.css?v=20260502" />
+    <link rel="stylesheet" href="../css/base.css?v=20260502" />
+    <link rel="stylesheet" href="../css/components.css?v=20260502" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span>Vishwak Panyala</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" class="site-nav" aria-label="Primary">
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#skills">Skills</a>
+          <a href="../index.html#labs">Labs</a>
+          <a href="../index.html#project">Project</a>
+          <a href="../index.html#blog">Blog</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container narrow">
+          <p class="breadcrumbs"><a href="../index.html">Home</a><span>›</span><a href="../index.html#labs">Labs</a><span>›</span>Lab 3</p>
+          <p class="eyebrow">Lab 3 · Cognitive Workload · Spring 2026</p>
+          <h1>Human Mental Workload — n-Back, NASA-TLX, and HRV</h1>
+          <p class="lead">Eight participants worked through three difficulty levels of the n-back task while wearing a heart-rate monitor and rating their effort on NASA-TLX. The question: which measure — accuracy, self-report, or physiology — most reliably tracks mental workload?</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="article">
+
+            <h2>Purpose</h2>
+            <p>Mental workload is one of the most important constructs in human factors, yet it is notoriously difficult to measure. Unlike physical fatigue — where a grip dynamometer or EMG sensor gives a direct signal — cognitive load lives partly in perception, partly in behavior, and partly in physiology. The n-back paradigm is a standard way to manipulate memory demand in a controlled, stepwise fashion. This lab used it to collect three classes of data simultaneously — performance, subjective rating, and physiological response — so we could see which one is most sensitive to increasing task difficulty, and how well the three sources agree.</p>
+
+            <h2>Methods</h2>
+            <p>Eight participants (four male, four female) completed three blocks of the n-back task — 1-back, 2-back, and 3-back — in a counterbalanced order to control for learning and fatigue effects. Each block lasted approximately five minutes. During each block, a secondary counting task ran concurrently: participants tracked the number of times a specific letter appeared, providing a dual-task measure of residual capacity.</p>
+            <p>Primary-task accuracy (proportion of correct target responses) was recorded automatically. Immediately after each block, participants completed the NASA-TLX scale — rating mental demand, physical demand, temporal demand, performance, effort, and frustration, then weighting their relative contribution. Electrocardiogram (ECG) data were collected continuously; inter-beat intervals were exported and analyzed in 5-minute windows to compute root-mean-square of successive differences (RMSSD) and the low-frequency to high-frequency power ratio (LF/HF) as indicators of autonomic nervous system response to workload.</p>
+            <p>Statistical analysis used repeated-measures ANOVA across conditions. Pearson correlations were computed between each pair of measures to assess convergent validity.</p>
+
+            <h2>Results</h2>
+
+            <h3>Primary task accuracy and NASA-TLX by n-back level</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Condition</th><th>Primary accuracy mean (SD)</th><th>NASA-TLX mean (SD)</th><th>RMSSD mean (SD)</th><th>LF/HF mean (SD)</th></tr></thead>
+                <tbody>
+                  <tr><td>1-back</td><td>82.8% (21.4)</td><td>51.25 (15.55)</td><td>41.01 (18.92)</td><td>2.499 (1.21)</td></tr>
+                  <tr><td>2-back</td><td>75.3% (12.8)</td><td>66.25 (10.77)</td><td>48.04 (22.17)</td><td>2.759 (1.48)</td></tr>
+                  <tr><td>3-back</td><td>66.5% (9.8)</td><td>77.58 (12.36)</td><td>39.84 (19.63)</td><td>2.314 (1.33)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Secondary counting task accuracy</h3>
+            <ul class="metric-strip">
+              <li><strong>86.2%</strong><span>1-back secondary accuracy</span></li>
+              <li><strong>79.4%</strong><span>2-back secondary accuracy</span></li>
+              <li><strong>71.8%</strong><span>3-back secondary accuracy</span></li>
+            </ul>
+
+            <h3>Correlations between workload measures (across participants, all conditions)</h3>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>Measure pair</th><th>Pearson r</th><th>Interpretation</th></tr></thead>
+                <tbody>
+                  <tr><td>Primary accuracy ↔ NASA-TLX</td><td>−0.71</td><td>Strong inverse: higher workload → lower accuracy</td></tr>
+                  <tr><td>RMSSD ↔ NASA-TLX</td><td>−0.44</td><td>Moderate inverse: strongest physiological link found</td></tr>
+                  <tr><td>LF/HF ↔ NASA-TLX</td><td>+0.18</td><td>Weak and inconsistent</td></tr>
+                  <tr><td>Primary accuracy ↔ RMSSD</td><td>+0.31</td><td>Weak positive</td></tr>
+                  <tr><td>Secondary accuracy ↔ NASA-TLX</td><td>−0.53</td><td>Moderate: secondary task less diagnostic than primary</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2>What I found</h2>
+            <p><strong>Primary accuracy declined monotonically with task difficulty.</strong> The drop from 1-back (82.8%) to 3-back (66.5%) was consistent and statistically reliable, confirming that the n-back manipulation worked as intended. At 3-back, participants were essentially failing roughly one in three target trials — a clear behavioral signature of overload.</p>
+            <p><strong>NASA-TLX rose with difficulty and aligned well with performance.</strong> The 26-point climb from 1-back (51.25) to 3-back (77.58) is large — well above the 10-point threshold often used as a clinically meaningful difference. Critically, every individual participant rated 3-back as harder than 1-back, which almost never happens with a measure as noisy as a self-report scale. The strong inverse correlation with accuracy (r = −0.71) confirms that subjective load and objective performance were tracking the same underlying construct.</p>
+            <p><strong>Heart rate didn't respond to the workload manipulation.</strong> Mean HR stayed near 75 bpm across all three conditions — flat, not discriminating. Heart rate is poorly suited for detecting cognitive versus physical demand, and this lab confirmed that: the cognitive load increase created no cardiovascular arousal signal in heart rate.</p>
+            <p><strong>RMSSD showed a non-monotonic pattern.</strong> It rose from 1-back to 2-back (41.01 → 48.04) then fell at 3-back (39.84). This is the expected direction at the extremes but with a non-monotonic middle point that makes interpretation ambiguous. The moderate correlation with NASA-TLX (r = −0.44) was the strongest physiological link observed — weaker than the accuracy–NASA-TLX link — and the between-participant variability was large.</p>
+            <p><strong>LF/HF ratio did not track workload reliably.</strong> The LF/HF values were not consistent with a sympathetic activation story: they rose from 1-back to 2-back and then fell at 3-back, without the monotonic increase you'd expect if sympathetic load were the driver. This may reflect the short recording windows, non-stationarity in the signal, or individual differences in autonomic reactivity.</p>
+            <p><strong>The secondary task provided marginal additional information.</strong> Secondary accuracy fell across conditions (86.2% → 71.8%), which is the expected "resource bottleneck" pattern, but its correlation with NASA-TLX (r = −0.53) was lower than primary accuracy's (r = −0.71). The secondary task added noise at the cost of experimental complexity.</p>
+            <p><strong>Triangulation prevented a misleading single-metric conclusion.</strong> Had we relied only on RMSSD, we might have concluded workload peaked at 2-back and fell at 3-back. Had we relied only on HR, we'd have concluded there was no workload effect at all. Primary accuracy and NASA-TLX, taken together, gave the clearest and most internally consistent picture of a reliable workload dose-response.</p>
+
+            <h2>Design recommendations</h2>
+            <dl class="rec-block">
+              <dt>Reduce memory-holding demands in high-stakes interfaces</dt>
+              <dd>At 3-back equivalent load, error rates approach 33%. Displays and procedures that require operators to hold more than 1–2 items in working memory simultaneously should be redesigned with persistent visual cues, status indicators, or structured checklists.</dd>
+              <dd><strong>Expected impact:</strong> lower cognitive error rate; better performance on primary task without requiring training-up of working memory capacity.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Use NASA-TLX as a standard workload check during interface evaluations</dt>
+              <dd>Its sensitivity to the 1-back → 3-back manipulation was reliable both between participants and within. It costs 2–3 minutes and has an extensive validation history in aviation, medical device, and process-control contexts.</dd>
+              <dd><strong>Expected impact:</strong> cost-effective workload screening that flags high-demand interface designs before they reach operational use.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Add in-task cognitive support to interrupt overload earlier</dt>
+              <dd>NASA-TLX captures end-of-task load. Real-time feedback — such as a simplified "effort level" display or a prompt to take a brief cognitive rest — could prevent workload from compounding across a shift.</dd>
+              <dd><strong>Expected impact:</strong> reduced accuracy degradation over a sustained session; lower error rates in time-critical environments.</dd>
+            </dl>
+            <dl class="rec-block">
+              <dt>Simplify task structures that exceed 2-back equivalent complexity</dt>
+              <dd>Procedures with more than two pending actions or three items to keep in mind simultaneously should be broken into shorter sub-routines with explicit state saves (checklists, confirmations) so working memory is freed between steps.</dd>
+              <dd><strong>Expected impact:</strong> reduced error rate on high-complexity tasks; consistent with Fitts' Law and information-theoretic models of human cognitive throughput.</dd>
+            </dl>
+
+            <h2>Reflection</h2>
+            <p>This lab taught me how expensive it is to rely on a single workload measure. The physiological signals (RMSSD, LF/HF) required substantially more equipment, analysis time, and statistical expertise than either accuracy scoring or NASA-TLX — and they returned less information about the workload gradient in this specific paradigm. That doesn't mean ECG-based HRV is useless; in environments where overt performance measurement is impractical (continuous monitoring vs. discrete trials), physiological measures may be the only available window into operator state. But for lab evaluation of interface designs, the accuracy + NASA-TLX combination dominates on cost-effectiveness.</p>
+            <p>The non-monotonic RMSSD result was also a reminder that "expected" physiological patterns in published literature emerge from large samples. With eight participants and short recording windows, individual variation swamped the group-level effect. Any real-world deployment of HRV as a workload indicator would need longer windows, more participants, and careful control of confounds like hydration, time of day, and prior physical activity — none of which were controlled here.</p>
+
+            <p><a class="btn btn-secondary btn-arrow" href="../index.html#labs">Back to all labs</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="legal">
+          <span>© 2026 Vishwak Parth Reddy Panyala. Built for ISyE 552, UW–Madison.</span>
+          <span><a href="../index.html">Home</a> · <a href="../index.html#contact">Contact</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/nav.js?v=20260502"></script>
+  </body>
+</html>
